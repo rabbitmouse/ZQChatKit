@@ -1,0 +1,831 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C3E5D6820ECC2A00011DF6F /* ZQTextToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6720ECC2A00011DF6F /* ZQTextToolView.m */; };
+		0C3E5D6A20ECC2CF0011DF6F /* ZQTextToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */; };
+		0C5F863820E5DB9F0073D6E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F863720E5DB9F0073D6E1 /* AppDelegate.m */; };
+		0C5F863B20E5DB9F0073D6E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F863A20E5DB9F0073D6E1 /* ViewController.m */; };
+		0C5F863E20E5DB9F0073D6E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F863C20E5DB9F0073D6E1 /* Main.storyboard */; };
+		0C5F864020E5DBA80073D6E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F863F20E5DBA80073D6E1 /* Assets.xcassets */; };
+		0C5F864320E5DBA80073D6E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F864120E5DBA80073D6E1 /* LaunchScreen.storyboard */; };
+		0C5F864620E5DBA80073D6E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F864520E5DBA80073D6E1 /* main.m */; };
+		0C5F865020E5DBA80073D6E1 /* ZQChatTableViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F864F20E5DBA80073D6E1 /* ZQChatTableViewTests.m */; };
+		0C5F865B20E5DBA80073D6E1 /* ZQChatTableViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F865A20E5DBA80073D6E1 /* ZQChatTableViewUITests.m */; };
+		0C5F866B20E5DC3C0073D6E1 /* ZQChatTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F866A20E5DC3C0073D6E1 /* ZQChatTableView.m */; };
+		0C5F866F20E5DCB20073D6E1 /* ZQChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F866D20E5DCB20073D6E1 /* ZQChatViewController.m */; };
+		0C5F867020E5DCB20073D6E1 /* ZQChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F866E20E5DCB20073D6E1 /* ZQChatViewController.xib */; };
+		0C5F867320E5DDA90073D6E1 /* ZQMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F867220E5DDA90073D6E1 /* ZQMessageCell.m */; };
+		0C5F867620E5DE9B0073D6E1 /* ZQMessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F867520E5DE9B0073D6E1 /* ZQMessageFrame.m */; };
+		0C5F867920E5DF090073D6E1 /* ZQMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F867820E5DF090073D6E1 /* ZQMessage.m */; };
+		0C5F867F20E604020073D6E1 /* NSString+ZQChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F867E20E604020073D6E1 /* NSString+ZQChat.m */; };
+		0C5F868220E60B420073D6E1 /* ZQMessageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F868120E60B420073D6E1 /* ZQMessageContentView.m */; };
+		0C7820CD20EB49CB001EBC55 /* ZQConfigStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7820CC20EB49CB001EBC55 /* ZQConfigStyle.m */; };
+		0C7820D120EB4F6E001EBC55 /* ZQImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7820D020EB4F6E001EBC55 /* ZQImageBrowser.m */; };
+		0C7820D920EB564D001EBC55 /* ZQMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7820D720EB564D001EBC55 /* ZQMessageTextView.m */; };
+		0C7820DC20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7820DA20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m */; };
+		36DD08F6D02403B8BFC12F2B /* Pods_ZQChatTableViewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BFF932F8F45E3DEE520EF2 /* Pods_ZQChatTableViewUITests.framework */; };
+		C4E38C303F1150C85EDB1971 /* Pods_ZQChatTableView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6AAF3C22A550A5AA409EF3 /* Pods_ZQChatTableView.framework */; };
+		DBA7DF5DE73E302D6BA55141 /* Pods_ZQChatTableViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BFB3B85217BF0622CB7261 /* Pods_ZQChatTableViewTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0C5F864C20E5DBA80073D6E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C5F862B20E5DB9F0073D6E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C5F863220E5DB9F0073D6E1;
+			remoteInfo = ZQChatTableView;
+		};
+		0C5F865720E5DBA80073D6E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C5F862B20E5DB9F0073D6E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C5F863220E5DB9F0073D6E1;
+			remoteInfo = ZQChatTableView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C3E5D6620ECC2A00011DF6F /* ZQTextToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQTextToolView.h; sourceTree = "<group>"; };
+		0C3E5D6720ECC2A00011DF6F /* ZQTextToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQTextToolView.m; sourceTree = "<group>"; };
+		0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZQTextToolView.xib; sourceTree = "<group>"; };
+		0C5F863320E5DB9F0073D6E1 /* ZQChatTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZQChatTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C5F863620E5DB9F0073D6E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		0C5F863720E5DB9F0073D6E1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		0C5F863920E5DB9F0073D6E1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		0C5F863A20E5DB9F0073D6E1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0C5F863D20E5DB9F0073D6E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0C5F863F20E5DBA80073D6E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0C5F864220E5DBA80073D6E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0C5F864420E5DBA80073D6E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C5F864520E5DBA80073D6E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0C5F864B20E5DBA80073D6E1 /* ZQChatTableViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZQChatTableViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C5F864F20E5DBA80073D6E1 /* ZQChatTableViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQChatTableViewTests.m; sourceTree = "<group>"; };
+		0C5F865120E5DBA80073D6E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C5F865620E5DBA80073D6E1 /* ZQChatTableViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZQChatTableViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C5F865A20E5DBA80073D6E1 /* ZQChatTableViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQChatTableViewUITests.m; sourceTree = "<group>"; };
+		0C5F865C20E5DBA80073D6E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C5F866920E5DC3C0073D6E1 /* ZQChatTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQChatTableView.h; sourceTree = "<group>"; };
+		0C5F866A20E5DC3C0073D6E1 /* ZQChatTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQChatTableView.m; sourceTree = "<group>"; };
+		0C5F866C20E5DCB20073D6E1 /* ZQChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQChatViewController.h; sourceTree = "<group>"; };
+		0C5F866D20E5DCB20073D6E1 /* ZQChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQChatViewController.m; sourceTree = "<group>"; };
+		0C5F866E20E5DCB20073D6E1 /* ZQChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZQChatViewController.xib; sourceTree = "<group>"; };
+		0C5F867120E5DDA90073D6E1 /* ZQMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQMessageCell.h; sourceTree = "<group>"; };
+		0C5F867220E5DDA90073D6E1 /* ZQMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQMessageCell.m; sourceTree = "<group>"; };
+		0C5F867420E5DE9B0073D6E1 /* ZQMessageFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQMessageFrame.h; sourceTree = "<group>"; };
+		0C5F867520E5DE9B0073D6E1 /* ZQMessageFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQMessageFrame.m; sourceTree = "<group>"; };
+		0C5F867720E5DF090073D6E1 /* ZQMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQMessage.h; sourceTree = "<group>"; };
+		0C5F867820E5DF090073D6E1 /* ZQMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQMessage.m; sourceTree = "<group>"; };
+		0C5F867A20E5DF210073D6E1 /* ZQMessageEnable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQMessageEnable.h; sourceTree = "<group>"; };
+		0C5F867B20E602BD0073D6E1 /* ZQChatDefault.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQChatDefault.h; sourceTree = "<group>"; };
+		0C5F867D20E604020073D6E1 /* NSString+ZQChat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZQChat.h"; sourceTree = "<group>"; };
+		0C5F867E20E604020073D6E1 /* NSString+ZQChat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZQChat.m"; sourceTree = "<group>"; };
+		0C5F868020E60B420073D6E1 /* ZQMessageContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQMessageContentView.h; sourceTree = "<group>"; };
+		0C5F868120E60B420073D6E1 /* ZQMessageContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQMessageContentView.m; sourceTree = "<group>"; };
+		0C7820CB20EB49CB001EBC55 /* ZQConfigStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQConfigStyle.h; sourceTree = "<group>"; };
+		0C7820CC20EB49CB001EBC55 /* ZQConfigStyle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQConfigStyle.m; sourceTree = "<group>"; };
+		0C7820CF20EB4F6E001EBC55 /* ZQImageBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQImageBrowser.h; sourceTree = "<group>"; };
+		0C7820D020EB4F6E001EBC55 /* ZQImageBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQImageBrowser.m; sourceTree = "<group>"; };
+		0C7820D720EB564D001EBC55 /* ZQMessageTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZQMessageTextView.m; sourceTree = "<group>"; };
+		0C7820D820EB564D001EBC55 /* ZQMessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZQMessageTextView.h; sourceTree = "<group>"; };
+		0C7820DA20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ZQkeyboardControl.m"; sourceTree = "<group>"; };
+		0C7820DB20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ZQkeyboardControl.h"; sourceTree = "<group>"; };
+		60BFB3B85217BF0622CB7261 /* Pods_ZQChatTableViewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZQChatTableViewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		730B96424195F428004713E9 /* Pods-ZQChatTableViewUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQChatTableViewUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZQChatTableViewUITests/Pods-ZQChatTableViewUITests.release.xcconfig"; sourceTree = "<group>"; };
+		959949957D62C898016A438C /* Pods-ZQChatTableView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQChatTableView.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZQChatTableView/Pods-ZQChatTableView.release.xcconfig"; sourceTree = "<group>"; };
+		99281FAA68BE6E94A5956634 /* Pods-ZQChatTableViewUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQChatTableViewUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZQChatTableViewUITests/Pods-ZQChatTableViewUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B2BFF932F8F45E3DEE520EF2 /* Pods_ZQChatTableViewUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZQChatTableViewUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDC3E48479AF9B178130455E /* Pods-ZQChatTableViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQChatTableViewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZQChatTableViewTests/Pods-ZQChatTableViewTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DA18CEFB2EA1BF58DFD227E9 /* Pods-ZQChatTableViewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQChatTableViewTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZQChatTableViewTests/Pods-ZQChatTableViewTests.release.xcconfig"; sourceTree = "<group>"; };
+		E0D8985D2F6AADFE3B540B43 /* Pods-ZQChatTableView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQChatTableView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZQChatTableView/Pods-ZQChatTableView.debug.xcconfig"; sourceTree = "<group>"; };
+		FE6AAF3C22A550A5AA409EF3 /* Pods_ZQChatTableView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZQChatTableView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0C5F863020E5DB9F0073D6E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4E38C303F1150C85EDB1971 /* Pods_ZQChatTableView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C5F864820E5DBA80073D6E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DBA7DF5DE73E302D6BA55141 /* Pods_ZQChatTableViewTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C5F865320E5DBA80073D6E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36DD08F6D02403B8BFC12F2B /* Pods_ZQChatTableViewUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C5F862A20E5DB9F0073D6E1 = {
+			isa = PBXGroup;
+			children = (
+				0C5F863520E5DB9F0073D6E1 /* ZQChatTableView */,
+				0C5F864E20E5DBA80073D6E1 /* ZQChatTableViewTests */,
+				0C5F865920E5DBA80073D6E1 /* ZQChatTableViewUITests */,
+				0C5F863420E5DB9F0073D6E1 /* Products */,
+				AB533A12BFD95E0CA919B3E4 /* Pods */,
+				554D95148B0AD8B126CDE39B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0C5F863420E5DB9F0073D6E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F863320E5DB9F0073D6E1 /* ZQChatTableView.app */,
+				0C5F864B20E5DBA80073D6E1 /* ZQChatTableViewTests.xctest */,
+				0C5F865620E5DBA80073D6E1 /* ZQChatTableViewUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0C5F863520E5DB9F0073D6E1 /* ZQChatTableView */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F866820E5DC080073D6E1 /* ZQChatKit */,
+				0C5F863620E5DB9F0073D6E1 /* AppDelegate.h */,
+				0C5F863720E5DB9F0073D6E1 /* AppDelegate.m */,
+				0C5F863920E5DB9F0073D6E1 /* ViewController.h */,
+				0C5F863A20E5DB9F0073D6E1 /* ViewController.m */,
+				0C5F863C20E5DB9F0073D6E1 /* Main.storyboard */,
+				0C5F863F20E5DBA80073D6E1 /* Assets.xcassets */,
+				0C5F864120E5DBA80073D6E1 /* LaunchScreen.storyboard */,
+				0C5F864420E5DBA80073D6E1 /* Info.plist */,
+				0C5F864520E5DBA80073D6E1 /* main.m */,
+			);
+			path = ZQChatTableView;
+			sourceTree = "<group>";
+		};
+		0C5F864E20E5DBA80073D6E1 /* ZQChatTableViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F864F20E5DBA80073D6E1 /* ZQChatTableViewTests.m */,
+				0C5F865120E5DBA80073D6E1 /* Info.plist */,
+			);
+			path = ZQChatTableViewTests;
+			sourceTree = "<group>";
+		};
+		0C5F865920E5DBA80073D6E1 /* ZQChatTableViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F865A20E5DBA80073D6E1 /* ZQChatTableViewUITests.m */,
+				0C5F865C20E5DBA80073D6E1 /* Info.plist */,
+			);
+			path = ZQChatTableViewUITests;
+			sourceTree = "<group>";
+		};
+		0C5F866820E5DC080073D6E1 /* ZQChatKit */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F866C20E5DCB20073D6E1 /* ZQChatViewController.h */,
+				0C5F866D20E5DCB20073D6E1 /* ZQChatViewController.m */,
+				0C5F866E20E5DCB20073D6E1 /* ZQChatViewController.xib */,
+				0C5F867B20E602BD0073D6E1 /* ZQChatDefault.h */,
+				0C7820CE20EB4F52001EBC55 /* Helper */,
+				0C5F868420E60B5E0073D6E1 /* View */,
+				0C5F868320E60B4E0073D6E1 /* Model */,
+				0C5F867C20E603DD0073D6E1 /* Category */,
+			);
+			path = ZQChatKit;
+			sourceTree = "<group>";
+		};
+		0C5F867C20E603DD0073D6E1 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0C7820DB20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.h */,
+				0C7820DA20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m */,
+				0C5F867D20E604020073D6E1 /* NSString+ZQChat.h */,
+				0C5F867E20E604020073D6E1 /* NSString+ZQChat.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		0C5F868320E60B4E0073D6E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F867420E5DE9B0073D6E1 /* ZQMessageFrame.h */,
+				0C5F867520E5DE9B0073D6E1 /* ZQMessageFrame.m */,
+				0C5F867720E5DF090073D6E1 /* ZQMessage.h */,
+				0C5F867820E5DF090073D6E1 /* ZQMessage.m */,
+				0C5F867A20E5DF210073D6E1 /* ZQMessageEnable.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0C5F868420E60B5E0073D6E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F866920E5DC3C0073D6E1 /* ZQChatTableView.h */,
+				0C5F866A20E5DC3C0073D6E1 /* ZQChatTableView.m */,
+				0C5F867120E5DDA90073D6E1 /* ZQMessageCell.h */,
+				0C5F867220E5DDA90073D6E1 /* ZQMessageCell.m */,
+				0C5F868020E60B420073D6E1 /* ZQMessageContentView.h */,
+				0C5F868120E60B420073D6E1 /* ZQMessageContentView.m */,
+				0C3E5D6620ECC2A00011DF6F /* ZQTextToolView.h */,
+				0C3E5D6720ECC2A00011DF6F /* ZQTextToolView.m */,
+				0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */,
+				0C7820D820EB564D001EBC55 /* ZQMessageTextView.h */,
+				0C7820D720EB564D001EBC55 /* ZQMessageTextView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0C7820CE20EB4F52001EBC55 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0C7820CF20EB4F6E001EBC55 /* ZQImageBrowser.h */,
+				0C7820D020EB4F6E001EBC55 /* ZQImageBrowser.m */,
+				0C7820CB20EB49CB001EBC55 /* ZQConfigStyle.h */,
+				0C7820CC20EB49CB001EBC55 /* ZQConfigStyle.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		554D95148B0AD8B126CDE39B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE6AAF3C22A550A5AA409EF3 /* Pods_ZQChatTableView.framework */,
+				60BFB3B85217BF0622CB7261 /* Pods_ZQChatTableViewTests.framework */,
+				B2BFF932F8F45E3DEE520EF2 /* Pods_ZQChatTableViewUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB533A12BFD95E0CA919B3E4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E0D8985D2F6AADFE3B540B43 /* Pods-ZQChatTableView.debug.xcconfig */,
+				959949957D62C898016A438C /* Pods-ZQChatTableView.release.xcconfig */,
+				BDC3E48479AF9B178130455E /* Pods-ZQChatTableViewTests.debug.xcconfig */,
+				DA18CEFB2EA1BF58DFD227E9 /* Pods-ZQChatTableViewTests.release.xcconfig */,
+				99281FAA68BE6E94A5956634 /* Pods-ZQChatTableViewUITests.debug.xcconfig */,
+				730B96424195F428004713E9 /* Pods-ZQChatTableViewUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0C5F863220E5DB9F0073D6E1 /* ZQChatTableView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C5F865F20E5DBA80073D6E1 /* Build configuration list for PBXNativeTarget "ZQChatTableView" */;
+			buildPhases = (
+				4A815417C42D2CF26B925859 /* [CP] Check Pods Manifest.lock */,
+				0C5F862F20E5DB9F0073D6E1 /* Sources */,
+				0C5F863020E5DB9F0073D6E1 /* Frameworks */,
+				0C5F863120E5DB9F0073D6E1 /* Resources */,
+				518A457A7DD9A4E24CB3221A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZQChatTableView;
+			productName = ZQChatTableView;
+			productReference = 0C5F863320E5DB9F0073D6E1 /* ZQChatTableView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0C5F864A20E5DBA80073D6E1 /* ZQChatTableViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C5F866220E5DBA80073D6E1 /* Build configuration list for PBXNativeTarget "ZQChatTableViewTests" */;
+			buildPhases = (
+				232A92DA592EE65ADED04C17 /* [CP] Check Pods Manifest.lock */,
+				0C5F864720E5DBA80073D6E1 /* Sources */,
+				0C5F864820E5DBA80073D6E1 /* Frameworks */,
+				0C5F864920E5DBA80073D6E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0C5F864D20E5DBA80073D6E1 /* PBXTargetDependency */,
+			);
+			name = ZQChatTableViewTests;
+			productName = ZQChatTableViewTests;
+			productReference = 0C5F864B20E5DBA80073D6E1 /* ZQChatTableViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0C5F865520E5DBA80073D6E1 /* ZQChatTableViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C5F866520E5DBA80073D6E1 /* Build configuration list for PBXNativeTarget "ZQChatTableViewUITests" */;
+			buildPhases = (
+				49E3F5255EF306892D8A76DE /* [CP] Check Pods Manifest.lock */,
+				0C5F865220E5DBA80073D6E1 /* Sources */,
+				0C5F865320E5DBA80073D6E1 /* Frameworks */,
+				0C5F865420E5DBA80073D6E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0C5F865820E5DBA80073D6E1 /* PBXTargetDependency */,
+			);
+			name = ZQChatTableViewUITests;
+			productName = ZQChatTableViewUITests;
+			productReference = 0C5F865620E5DBA80073D6E1 /* ZQChatTableViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0C5F862B20E5DB9F0073D6E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "朱志勤";
+				TargetAttributes = {
+					0C5F863220E5DB9F0073D6E1 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					0C5F864A20E5DBA80073D6E1 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 0C5F863220E5DB9F0073D6E1;
+					};
+					0C5F865520E5DBA80073D6E1 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 0C5F863220E5DB9F0073D6E1;
+					};
+				};
+			};
+			buildConfigurationList = 0C5F862E20E5DB9F0073D6E1 /* Build configuration list for PBXProject "ZQChatTableView" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0C5F862A20E5DB9F0073D6E1;
+			productRefGroup = 0C5F863420E5DB9F0073D6E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0C5F863220E5DB9F0073D6E1 /* ZQChatTableView */,
+				0C5F864A20E5DBA80073D6E1 /* ZQChatTableViewTests */,
+				0C5F865520E5DBA80073D6E1 /* ZQChatTableViewUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0C5F863120E5DB9F0073D6E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C5F864320E5DBA80073D6E1 /* LaunchScreen.storyboard in Resources */,
+				0C3E5D6A20ECC2CF0011DF6F /* ZQTextToolView.xib in Resources */,
+				0C5F864020E5DBA80073D6E1 /* Assets.xcassets in Resources */,
+				0C5F863E20E5DB9F0073D6E1 /* Main.storyboard in Resources */,
+				0C5F867020E5DCB20073D6E1 /* ZQChatViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C5F864920E5DBA80073D6E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C5F865420E5DBA80073D6E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		232A92DA592EE65ADED04C17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZQChatTableViewTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		49E3F5255EF306892D8A76DE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZQChatTableViewUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A815417C42D2CF26B925859 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZQChatTableView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		518A457A7DD9A4E24CB3221A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ZQChatTableView/Pods-ZQChatTableView-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZQChatTableView/Pods-ZQChatTableView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0C5F862F20E5DB9F0073D6E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C5F867320E5DDA90073D6E1 /* ZQMessageCell.m in Sources */,
+				0C7820D120EB4F6E001EBC55 /* ZQImageBrowser.m in Sources */,
+				0C5F863B20E5DB9F0073D6E1 /* ViewController.m in Sources */,
+				0C5F864620E5DBA80073D6E1 /* main.m in Sources */,
+				0C5F867F20E604020073D6E1 /* NSString+ZQChat.m in Sources */,
+				0C7820CD20EB49CB001EBC55 /* ZQConfigStyle.m in Sources */,
+				0C5F866B20E5DC3C0073D6E1 /* ZQChatTableView.m in Sources */,
+				0C7820D920EB564D001EBC55 /* ZQMessageTextView.m in Sources */,
+				0C5F868220E60B420073D6E1 /* ZQMessageContentView.m in Sources */,
+				0C5F863820E5DB9F0073D6E1 /* AppDelegate.m in Sources */,
+				0C5F866F20E5DCB20073D6E1 /* ZQChatViewController.m in Sources */,
+				0C5F867920E5DF090073D6E1 /* ZQMessage.m in Sources */,
+				0C5F867620E5DE9B0073D6E1 /* ZQMessageFrame.m in Sources */,
+				0C3E5D6820ECC2A00011DF6F /* ZQTextToolView.m in Sources */,
+				0C7820DC20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C5F864720E5DBA80073D6E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C5F865020E5DBA80073D6E1 /* ZQChatTableViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C5F865220E5DBA80073D6E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C5F865B20E5DBA80073D6E1 /* ZQChatTableViewUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0C5F864D20E5DBA80073D6E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C5F863220E5DB9F0073D6E1 /* ZQChatTableView */;
+			targetProxy = 0C5F864C20E5DBA80073D6E1 /* PBXContainerItemProxy */;
+		};
+		0C5F865820E5DBA80073D6E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C5F863220E5DB9F0073D6E1 /* ZQChatTableView */;
+			targetProxy = 0C5F865720E5DBA80073D6E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0C5F863C20E5DB9F0073D6E1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C5F863D20E5DB9F0073D6E1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0C5F864120E5DBA80073D6E1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C5F864220E5DBA80073D6E1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0C5F865D20E5DBA80073D6E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0C5F865E20E5DBA80073D6E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0C5F866020E5DBA80073D6E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0D8985D2F6AADFE3B540B43 /* Pods-ZQChatTableView.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63937TF85X;
+				INFOPLIST_FILE = ZQChatTableView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zq.ZQChatTableView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0C5F866120E5DBA80073D6E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 959949957D62C898016A438C /* Pods-ZQChatTableView.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 63937TF85X;
+				INFOPLIST_FILE = ZQChatTableView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zq.ZQChatTableView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0C5F866320E5DBA80073D6E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDC3E48479AF9B178130455E /* Pods-ZQChatTableViewTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ZQChatTableViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zq.ZQChatTableViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZQChatTableView.app/ZQChatTableView";
+			};
+			name = Debug;
+		};
+		0C5F866420E5DBA80073D6E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA18CEFB2EA1BF58DFD227E9 /* Pods-ZQChatTableViewTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ZQChatTableViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zq.ZQChatTableViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZQChatTableView.app/ZQChatTableView";
+			};
+			name = Release;
+		};
+		0C5F866620E5DBA80073D6E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99281FAA68BE6E94A5956634 /* Pods-ZQChatTableViewUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ZQChatTableViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zq.ZQChatTableViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ZQChatTableView;
+			};
+			name = Debug;
+		};
+		0C5F866720E5DBA80073D6E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 730B96424195F428004713E9 /* Pods-ZQChatTableViewUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ZQChatTableViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zq.ZQChatTableViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ZQChatTableView;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C5F862E20E5DB9F0073D6E1 /* Build configuration list for PBXProject "ZQChatTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C5F865D20E5DBA80073D6E1 /* Debug */,
+				0C5F865E20E5DBA80073D6E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C5F865F20E5DBA80073D6E1 /* Build configuration list for PBXNativeTarget "ZQChatTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C5F866020E5DBA80073D6E1 /* Debug */,
+				0C5F866120E5DBA80073D6E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C5F866220E5DBA80073D6E1 /* Build configuration list for PBXNativeTarget "ZQChatTableViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C5F866320E5DBA80073D6E1 /* Debug */,
+				0C5F866420E5DBA80073D6E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C5F866520E5DBA80073D6E1 /* Build configuration list for PBXNativeTarget "ZQChatTableViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C5F866620E5DBA80073D6E1 /* Debug */,
+				0C5F866720E5DBA80073D6E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0C5F862B20E5DB9F0073D6E1 /* Project object */;
+}

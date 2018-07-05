@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZQChatViewController">
+            <connections>
+                <outlet property="bottomToolView" destination="8uW-Xy-g3E" id="TP4-Xz-ChX"/>
+                <outlet property="tableview" destination="i73-Qs-xj8" id="mMi-fF-O5A"/>
+                <outlet property="toolBottomLayout" destination="Qp9-lW-Ybb" id="ViN-1H-P6T"/>
+                <outlet property="toolHeightLayout" destination="DSD-Ft-Eb5" id="bxN-ga-KcQ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uW-Xy-g3E">
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="DSD-Ft-Eb5"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i73-Qs-xj8" customClass="ZQChatTableView">
+                    <rect key="frame" x="0.0" y="20" width="375" height="603"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="8uW-Xy-g3E" secondAttribute="bottom" id="Qp9-lW-Ybb"/>
+                <constraint firstItem="8uW-Xy-g3E" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Xb9-SF-Hpy"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="8uW-Xy-g3E" secondAttribute="trailing" id="ZP1-dE-QIi"/>
+                <constraint firstItem="i73-Qs-xj8" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="fex-xI-YuY"/>
+                <constraint firstItem="i73-Qs-xj8" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="iTJ-S8-lgI"/>
+                <constraint firstItem="8uW-Xy-g3E" firstAttribute="top" secondItem="i73-Qs-xj8" secondAttribute="bottom" id="jxK-BO-Vkh"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="i73-Qs-xj8" secondAttribute="trailing" id="oai-UZ-1dI"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="34.5" y="71.5"/>
+        </view>
+    </objects>
+</document>
