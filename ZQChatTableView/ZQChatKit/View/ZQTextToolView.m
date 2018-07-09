@@ -2,8 +2,8 @@
 //  ZQTextToolView.m
 //  ZQChatTableView
 //
-//  Created by 朱志勤 on 2018/7/4.
-//  Copyright © 2018年 朱志勤. All rights reserved.
+//  Created by zzq on 2018/7/4.
+//  Copyright © 2018年 zzq. All rights reserved.
 //
 
 #import "ZQTextToolView.h"
@@ -33,6 +33,9 @@
 }
 
 - (IBAction)mediaBtnClicked:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedMultipleMediaAction)]) {
+        [self.delegate didSelectedMultipleMediaAction];
+    }
 }
 
 #pragma mark - Message input view

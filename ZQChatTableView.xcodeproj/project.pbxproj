@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C22ED3920EDBA7C00CD03CE /* ZQChatMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22ED3820EDBA7C00CD03CE /* ZQChatMenuView.m */; };
+		0C22ED3B20EDBA8600CD03CE /* ZQChatMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C22ED3A20EDBA8600CD03CE /* ZQChatMenuView.xib */; };
 		0C3E5D6820ECC2A00011DF6F /* ZQTextToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6720ECC2A00011DF6F /* ZQTextToolView.m */; };
 		0C3E5D6A20ECC2CF0011DF6F /* ZQTextToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */; };
 		0C5F863820E5DB9F0073D6E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F863720E5DB9F0073D6E1 /* AppDelegate.m */; };
@@ -29,6 +31,7 @@
 		0C7820D120EB4F6E001EBC55 /* ZQImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7820D020EB4F6E001EBC55 /* ZQImageBrowser.m */; };
 		0C7820D920EB564D001EBC55 /* ZQMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7820D720EB564D001EBC55 /* ZQMessageTextView.m */; };
 		0C7820DC20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7820DA20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m */; };
+		0CCB09D520F34F9D00ECD6A6 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCB09D420F34F9D00ECD6A6 /* DemoViewController.m */; };
 		36DD08F6D02403B8BFC12F2B /* Pods_ZQChatTableViewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2BFF932F8F45E3DEE520EF2 /* Pods_ZQChatTableViewUITests.framework */; };
 		C4E38C303F1150C85EDB1971 /* Pods_ZQChatTableView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6AAF3C22A550A5AA409EF3 /* Pods_ZQChatTableView.framework */; };
 		DBA7DF5DE73E302D6BA55141 /* Pods_ZQChatTableViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60BFB3B85217BF0622CB7261 /* Pods_ZQChatTableViewTests.framework */; };
@@ -52,6 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C22ED3720EDBA7C00CD03CE /* ZQChatMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQChatMenuView.h; sourceTree = "<group>"; };
+		0C22ED3820EDBA7C00CD03CE /* ZQChatMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQChatMenuView.m; sourceTree = "<group>"; };
+		0C22ED3A20EDBA8600CD03CE /* ZQChatMenuView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZQChatMenuView.xib; sourceTree = "<group>"; };
 		0C3E5D6620ECC2A00011DF6F /* ZQTextToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQTextToolView.h; sourceTree = "<group>"; };
 		0C3E5D6720ECC2A00011DF6F /* ZQTextToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQTextToolView.m; sourceTree = "<group>"; };
 		0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZQTextToolView.xib; sourceTree = "<group>"; };
@@ -96,6 +102,8 @@
 		0C7820D820EB564D001EBC55 /* ZQMessageTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZQMessageTextView.h; sourceTree = "<group>"; };
 		0C7820DA20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ZQkeyboardControl.m"; sourceTree = "<group>"; };
 		0C7820DB20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ZQkeyboardControl.h"; sourceTree = "<group>"; };
+		0CCB09D320F34F9D00ECD6A6 /* DemoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		0CCB09D420F34F9D00ECD6A6 /* DemoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
 		60BFB3B85217BF0622CB7261 /* Pods_ZQChatTableViewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZQChatTableViewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		730B96424195F428004713E9 /* Pods-ZQChatTableViewUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQChatTableViewUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZQChatTableViewUITests/Pods-ZQChatTableViewUITests.release.xcconfig"; sourceTree = "<group>"; };
 		959949957D62C898016A438C /* Pods-ZQChatTableView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZQChatTableView.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZQChatTableView/Pods-ZQChatTableView.release.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +211,8 @@
 				0C5F868420E60B5E0073D6E1 /* View */,
 				0C5F868320E60B4E0073D6E1 /* Model */,
 				0C5F867C20E603DD0073D6E1 /* Category */,
+				0CCB09D320F34F9D00ECD6A6 /* DemoViewController.h */,
+				0CCB09D420F34F9D00ECD6A6 /* DemoViewController.m */,
 			);
 			path = ZQChatKit;
 			sourceTree = "<group>";
@@ -244,6 +254,9 @@
 				0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */,
 				0C7820D820EB564D001EBC55 /* ZQMessageTextView.h */,
 				0C7820D720EB564D001EBC55 /* ZQMessageTextView.m */,
+				0C22ED3720EDBA7C00CD03CE /* ZQChatMenuView.h */,
+				0C22ED3820EDBA7C00CD03CE /* ZQChatMenuView.m */,
+				0C22ED3A20EDBA8600CD03CE /* ZQChatMenuView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -349,7 +362,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0940;
-				ORGANIZATIONNAME = "朱志勤";
+				ORGANIZATIONNAME = zzq;
 				TargetAttributes = {
 					0C5F863220E5DB9F0073D6E1 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -393,6 +406,7 @@
 				0C3E5D6A20ECC2CF0011DF6F /* ZQTextToolView.xib in Resources */,
 				0C5F864020E5DBA80073D6E1 /* Assets.xcassets in Resources */,
 				0C5F863E20E5DB9F0073D6E1 /* Main.storyboard in Resources */,
+				0C22ED3B20EDBA8600CD03CE /* ZQChatMenuView.xib in Resources */,
 				0C5F867020E5DCB20073D6E1 /* ZQChatViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,9 +512,11 @@
 				0C5F867320E5DDA90073D6E1 /* ZQMessageCell.m in Sources */,
 				0C7820D120EB4F6E001EBC55 /* ZQImageBrowser.m in Sources */,
 				0C5F863B20E5DB9F0073D6E1 /* ViewController.m in Sources */,
+				0CCB09D520F34F9D00ECD6A6 /* DemoViewController.m in Sources */,
 				0C5F864620E5DBA80073D6E1 /* main.m in Sources */,
 				0C5F867F20E604020073D6E1 /* NSString+ZQChat.m in Sources */,
 				0C7820CD20EB49CB001EBC55 /* ZQConfigStyle.m in Sources */,
+				0C22ED3920EDBA7C00CD03CE /* ZQChatMenuView.m in Sources */,
 				0C5F866B20E5DC3C0073D6E1 /* ZQChatTableView.m in Sources */,
 				0C7820D920EB564D001EBC55 /* ZQMessageTextView.m in Sources */,
 				0C5F868220E60B420073D6E1 /* ZQMessageContentView.m in Sources */,

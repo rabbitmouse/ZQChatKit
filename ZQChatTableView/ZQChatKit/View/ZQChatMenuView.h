@@ -1,13 +1,13 @@
 //
-//  ZQChatTableView.h
+//  ZQChatMenuView.h
 //  ZQChatTableView
 //
-//  Created by zzq on 2018/6/29.
+//  Created by zzq on 2018/7/5.
 //  Copyright © 2018年 zzq. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ZQChatTableView : UITableView
+@interface ZQChatMenuView : UIView
 
 @end

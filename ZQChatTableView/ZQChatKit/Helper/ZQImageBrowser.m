@@ -2,8 +2,8 @@
 //  ZQImageBrowser.m
 //  ZQChatTableView
 //
-//  Created by 朱志勤 on 2018/7/3.
-//  Copyright © 2018年 朱志勤. All rights reserved.
+//  Created by zzq on 2018/7/3.
+//  Copyright © 2018年 zzq. All rights reserved.
 //
 
 #import "ZQImageBrowser.h"

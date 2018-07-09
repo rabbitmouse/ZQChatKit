@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, XHInputViewType) {
-    XHInputViewTypeNormal = 0,
-    XHInputViewTypeText,
-    XHInputViewTypeEmotion,
-    XHInputViewTypeShareMenu,
+    ZQInputViewTypeNormal = 0,
+    ZQInputViewTypeText,
+    ZQInputViewTypeEmotion,
+    ZQInputViewTypeShareMenu,
 };
 
 @interface ZQMessageTextView : UITextView

@@ -2,17 +2,16 @@
 //  ZQChatViewController.m
 //  ZQChatTableView
 //
-//  Created by 朱志勤 on 2018/6/29.
-//  Copyright © 2018年 朱志勤. All rights reserved.
+//  Created by zzq on 2018/6/29.
+//  Copyright © 2018年 zzq. All rights reserved.
 //
 
 #import "ZQChatViewController.h"
-#import "ZQChatTableView.h"
+
 #import "ZQMessageCell.h"
 #import "ZQTextToolView.h"
-#import "ZQMessage.h"
-#import "ZQMessageFrame.h"
-#import "ZQChatDefault.h"
+#import "ZQChatMenuView.h"
+
 #import <Masonry/Masonry.h>
 
 #import "UIScrollView+ZQkeyboardControl.h"
@@ -20,20 +19,25 @@
 #define TextViewDefualtHeight 40
 
 @interface ZQChatViewController ()<UITableViewDelegate, UITableViewDataSource, ZQMessageInputViewDelegate, ZQMessageCellDelegate>
-@property (weak, nonatomic) IBOutlet ZQChatTableView *tableview;
+
 @property (weak, nonatomic) IBOutlet UIView *bottomToolView;
+
 @property (nonatomic, strong) ZQTextToolView *textMessageView;
+@property (nonatomic, strong) ZQChatMenuView *menuView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBottomLayout;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolHeightLayout;
+
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+
+@property (nonatomic, assign, readwrite) ZQChatInputViewType inputViewType;
 
 /**
  *  记录旧的textView contentSize Heigth
  */
 @property (nonatomic, assign) CGFloat previousTextViewContentHeight;
 
-@property (nonatomic, strong) NSMutableArray *dataSource;
+
 @end
 
 @implementation ZQChatViewController
@@ -69,20 +73,16 @@
     [super viewDidLoad];
     
     [self configUI];
-    [self configModel];
     [self addKeyboardAction];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self scrollToBottomAnimated:NO];
-    });
 }
 
 - (void)configUI {
+    self.delegate = self;
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
     [self.tableview registerClass:[ZQMessageCell class] forCellReuseIdentifier:NSStringFromClass([ZQMessageCell class])];
     
-    ZQTextToolView *textView = [[NSBundle mainBundle] loadNibNamed:@"ZQTextToolView" owner:nil options:nil].firstObject;
+    ZQTextToolView *textView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZQTextToolView class]) owner:nil options:nil].firstObject;
     textView.delegate = self;
     [self.bottomToolView addSubview:textView];
     [textView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -90,10 +90,21 @@
     }];
     self.textMessageView = textView;
     
+    ZQChatMenuView *menuView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZQChatMenuView class]) owner:nil options:nil].firstObject;
+    menuView.alpha = 0;
+    [self.bottomToolView addSubview:menuView];
+    [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.bottomToolView);
+        make.top.equalTo(textView.mas_bottom);
+        make.height.mas_equalTo(@200);
+    }];
+    self.menuView = menuView;
+    
     self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidTap:)];
-    [self.view addGestureRecognizer:self.tapGesture];
+    [self.tableview addGestureRecognizer:self.tapGesture];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.inputViewType = ZQChatInputViewTypeNormal;
 }
 
 - (void)addKeyboardAction {
@@ -103,51 +114,19 @@
                               delay:0.0
                             options:options
                          animations:^{
-                             weakSelf.toolBottomLayout.constant = showKeyboard ? keyboardRect.size.height : 0;
-                             [weakSelf.view layoutIfNeeded];
                              
-                             if (showKeyboard) {
-                                 [weakSelf scrollToBottomAnimated:NO];
+                             if (self.inputViewType != ZQChatInputViewTypeTool) {
+                                 weakSelf.toolBottomLayout.constant = showKeyboard ? keyboardRect.size.height : 0;
+                                 
+                                 [weakSelf.view layoutIfNeeded];
+                                 
+                                 if (showKeyboard) {
+                                     [weakSelf scrollToBottomAnimated:NO];
+                                 }
                              }
                          }
                          completion:nil];
     };
-}
-
-- (void)configModel {
-    self.dataSource = [NSMutableArray array];
-    NSArray *texts = @[@"文字文字",
-                       @"文字文字文字文字文字文字文字文字文字文字文字文字文字文字",
-                       @"文字文字文字文字文字文字文字文字文字文字文字文字文字文字",
-                       @"文字文字",
-                       @"文文字文字文字文字文字文字文字文字文字文字文字文字文字文字字文字",
-                       @"文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字",
-                       @"文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字",
-                       @"文字文文字文字文字文字文字文字文字文字文字文字文字文字文字文字字",
-                       @"文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字",
-                       @"文字文字文字文字文字文字文字文字文字文字文字文字文字文文字文字文字文字文字文字文字文字文字文字文字文字文字文字字文字文字",
-                       @"文文字文字文文字",
-                       @"文字文文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字字",
-                       @"文文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字字文字",
-                       @"文字文文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字字",
-                       @"文字文文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字字"];
-    
-    [texts enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        ZQMessage *message = [[ZQMessage alloc] initWithText:obj UserId:@(idx).stringValue sender:@"用户名" timestamp:[NSDate date]];
-        message.bubbleMessageType = idx % 3 ? ZQBubbleMessageTypeSend : ZQBubbleMessageTypeReceive;
-        ZQMessageFrame *messageFrame = [[ZQMessageFrame alloc] init];
-        messageFrame.message = message;
-        messageFrame.showTime = YES;
-        messageFrame.shouldShowUserName = YES;
-        [self.dataSource addObject:messageFrame];
-    }];
-    
-    ZQMessage *photoMessage = [[ZQMessage alloc] initWithPhoto:[UIImage imageNamed:@"defualtPhoto"] UserId:@"aaa" thumbnailUrl:nil originPhotoUrl:nil sender:@"发图片" timestamp:[NSDate date]];
-    ZQMessageFrame *photoFrame = [[ZQMessageFrame alloc] init];
-    photoFrame.message = photoMessage;
-    photoFrame.shouldShowUserName = YES;
-    photoFrame.showTime = YES;
-    [self.dataSource addObject:photoFrame];
 }
 
 #pragma mark - UITableViewDataSource
@@ -262,13 +241,46 @@
     }
 }
 
+- (void)menuViewNeedHide:(BOOL)nHide {
+    if (nHide && self.inputViewType == ZQChatInputViewTypeTool) {
+        [self.textMessageView.inputTextView becomeFirstResponder];
+    } else {
+        [self.textMessageView.inputTextView resignFirstResponder];
+    }
+    
+    if (nHide) {
+        // hide
+        [UIView animateWithDuration:0.25f animations:^{
+            self.menuView.alpha = 0;
+            if (self.inputViewType == ZQChatInputViewTypeNormal) {
+                self.toolBottomLayout.constant = 0;
+            }
+            [self.view layoutIfNeeded];
+        } completion:nil];
+    } else {
+        // show
+        [UIView animateWithDuration:0.25f animations:^{
+            self.menuView.alpha = 1;
+            self.toolBottomLayout.constant = CGRectGetHeight(self.menuView.frame);
+            [self.view layoutIfNeeded];
+            
+            [self scrollToBottomAnimated:NO];
+        } completion:nil];
+    }
+}
+
 - (void)viewDidTap:(UITapGestureRecognizer *)tap {
+    self.inputViewType = ZQInputViewTypeNormal;
     [self.textMessageView.inputTextView resignFirstResponder];
+    if (self.inputViewType != ZQChatInputViewTypeText) {
+        [self menuViewNeedHide:YES];
+    }
 }
 
 #pragma mark - ZQMessageInputViewDelegate
 - (void)inputTextViewWillBeginEditing:(ZQMessageTextView *)messageInputTextView {
-//    self.textViewInputViewType = XHInputViewTypeText;
+    self.inputViewType = ZQChatInputViewTypeText;
+    [self menuViewNeedHide:YES];
 }
 
 - (void)inputTextViewDidBeginEditing:(ZQMessageTextView *)messageInputTextView {
@@ -279,9 +291,24 @@
 - (void)didSendTextAction:(NSString *)text {
     //发送按钮
     NSLog(@"点击了发送按钮");
+    self.textMessageView.inputTextView.text = @"";
+    [self.textMessageView.inputTextView resignFirstResponder];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSendText:fromSender:onDate:)]) {
+        [self.delegate didSendText:text fromSender:@"sender" onDate:[NSDate date]];
+    }
 }
 
-#pragma mark -
+- (void)didSelectedMultipleMediaAction {
+    if (self.inputViewType != ZQChatInputViewTypeTool) {
+        self.inputViewType = ZQChatInputViewTypeTool;
+        [self menuViewNeedHide:NO];
+    } else {
+        [self menuViewNeedHide:YES];
+    }
+}
+
+#pragma mark - ZQMessageCellDelegate
 
 - (void)chatCell:(ZQMessageCell *)cell headImageDidClick:(NSString *)userId {
     NSLog(@"点击了头像");
