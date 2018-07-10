@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZQMenuItem.h"
 
 @interface ZQMenuCell : UICollectionViewCell
+
+@property (nonatomic, strong) ZQMenuItem *item;
 
 @end

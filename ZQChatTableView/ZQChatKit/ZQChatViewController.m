@@ -18,7 +18,7 @@
 
 #define TextViewDefualtHeight 40
 
-@interface ZQChatViewController ()<UITableViewDelegate, UITableViewDataSource, ZQMessageInputViewDelegate, ZQMessageCellDelegate>
+@interface ZQChatViewController ()<UITableViewDelegate, UITableViewDataSource, ZQMessageInputViewDelegate, ZQMessageCellDelegate, ZQChatMenuViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *bottomToolView;
 
@@ -91,6 +91,21 @@
     self.textMessageView = textView;
     
     ZQChatMenuView *menuView = [ZQChatMenuView new];
+    menuView.delegate = self;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(loadCustomMenus)]) {
+        menuView.menus = [self.delegate loadCustomMenus].copy;
+    } else {
+        NSArray *titles = @[@"拍照",@"照片",@"位置"];
+        NSArray *icons = @[@"sharemore_video",@"sharemore_pic",@"sharemore_location"];
+        NSMutableArray *menus = [NSMutableArray array];
+        for (int i = 0; i < 3; ++i) {
+            ZQMenuItem *item = [ZQMenuItem new];
+            item.title = titles[i];
+            item.imgName = icons[i];
+            [menus addObject:item];
+        }
+        menuView.menus = [menus copy];
+    }
     menuView.alpha = 0;
     [self.view addSubview:menuView];
     [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -316,6 +331,31 @@
 - (void)chatCell:(ZQMessageCell *)cell contentButtonClick:(NSString *)userId {
     [self.textMessageView.inputView resignFirstResponder];
     NSLog(@"点击了内容");
+}
+
+#pragma mark - ZQChatMenuViewDelegate
+- (void)MenuViewDidSelectItem:(NSIndexPath *)indexPath {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(customMenusDidSelectItem:)]) {
+        [self.delegate customMenusDidSelectItem:indexPath];
+    } else {
+        //默认
+        switch (indexPath.item) {
+            case 0:
+                //拍照
+                NSLog(@"点击了拍照");
+                break;
+            case 1:
+                //相册
+                NSLog(@"点击了相册");
+                break;
+            case 2:
+                //地点
+                break;
+
+            default:
+                break;
+        }
+    }
 }
 
 #pragma mark - getter & setter

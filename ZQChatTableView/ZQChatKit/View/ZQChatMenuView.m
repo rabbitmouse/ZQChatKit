@@ -17,6 +17,9 @@
 static NSString *cellIdentify = @"ZQMenuCell";
 
 @interface ZQChatMenuView() <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+{
+    UIView *_lineView;
+}
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -46,16 +49,27 @@ static NSString *cellIdentify = @"ZQMenuCell";
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.pagingEnabled = YES;
     collectionView.scrollEnabled = YES;
-    collectionView.backgroundColor = [UIColor whiteColor];
+    collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [collectionView registerClass:[ZQMenuCell class] forCellWithReuseIdentifier:cellIdentify];
 
     [self addSubview:collectionView];
     self.collectionView = collectionView;
+    
+    UIView *lineView = [[UIView alloc] init];
+    lineView.backgroundColor = [UIColor lightGrayColor];
+    [self addSubview:lineView];
+    
+    _lineView = lineView;
 }
 
 
 - (void)layoutSubviews {
     self.collectionView.frame = self.bounds;
+    _lineView.frame = CGRectMake(0, 0, self.bounds.size.width, 1);
+}
+
+- (void)reloadMenu {
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -69,12 +83,16 @@ static NSString *cellIdentify = @"ZQMenuCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZQMenuCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentify forIndexPath:indexPath];
+    cell.item = self.menus[indexPath.row];
     return cell;
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"tap cell");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MenuViewDidSelectItem:)]) {
+        [self.delegate MenuViewDidSelectItem:indexPath];
+    }
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout

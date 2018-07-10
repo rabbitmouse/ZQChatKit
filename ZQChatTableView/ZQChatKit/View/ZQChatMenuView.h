@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ZQChatMenuViewDelegate <NSObject>
+
+- (void)MenuViewDidSelectItem:(NSIndexPath *)indexPath;
+
+@end
+
 @interface ZQChatMenuView : UIView
 
-@property (nonatomic, strong) NSMutableArray *menus;
+@property (nonatomic, strong) NSArray *menus;
+@property (nonatomic, weak) id<ZQChatMenuViewDelegate> delegate;
+
+- (void)reloadMenu;
 
 @end

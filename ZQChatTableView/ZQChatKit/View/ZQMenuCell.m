@@ -8,6 +8,8 @@
 
 #import "ZQMenuCell.h"
 
+#define itemPadding 10
+
 @interface ZQMenuCell()
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -35,13 +37,26 @@
     label.textColor = [UIColor lightGrayColor];
     [self addSubview:label];
     self.titleLabel = label;
+    
+    self.iconView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.iconView.layer.borderWidth = 1.f;
+    self.iconView.layer.cornerRadius = 4.f;
+//    self.iconView.layer.masksToBounds = YES;
 }
 
 - (void)layoutSubviews {
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
-    self.iconView.frame = CGRectMake(0, 0, width, width);
-    self.titleLabel.frame = CGRectMake(0, width + 3, width, height - width - 3);
+    
+    CGFloat imgWH = width - itemPadding *2;
+    self.iconView.frame = CGRectMake(itemPadding, 0, imgWH, imgWH);
+    self.titleLabel.frame = CGRectMake(0, imgWH + 5, width, height - imgWH);
+}
+
+- (void)setItem:(ZQMenuItem *)item {
+    _item = item;
+    self.iconView.image = [UIImage imageNamed:item.imgName];
+    self.titleLabel.text = item.title;
 }
 
 @end

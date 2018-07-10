@@ -14,6 +14,8 @@
 #import "ZQMessageFrame.h"
 #import "ZQChatDefault.h"
 
+#import "ZQMenuItem.h"
+
 
 typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
     ZQChatInputViewTypeNormal = 0 << 1,
@@ -74,6 +76,16 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
  *  下拉加载更多消息，只有在支持下拉加载更多消息的情况下才会调用。
  */
 - (void)loadMoreMessagesScrollTotop;
+
+/**
+ *  自定义菜单栏，需要传入DataSource
+ */
+- (NSMutableArray<ZQMenuItem *> *)loadCustomMenus;
+
+/**
+ *  自定义菜单，接受事件
+ */
+- (void)customMenusDidSelectItem:(NSIndexPath *)indexPath;
 
 @end
 
