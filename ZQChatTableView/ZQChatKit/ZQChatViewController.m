@@ -90,12 +90,12 @@
     }];
     self.textMessageView = textView;
     
-    ZQChatMenuView *menuView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZQChatMenuView class]) owner:nil options:nil].firstObject;
+    ZQChatMenuView *menuView = [ZQChatMenuView new];
     menuView.alpha = 0;
-    [self.bottomToolView addSubview:menuView];
+    [self.view addSubview:menuView];
     [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.bottomToolView);
-        make.top.equalTo(textView.mas_bottom);
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.bottomToolView.mas_bottom);
         make.height.mas_equalTo(@200);
     }];
     self.menuView = menuView;
@@ -292,7 +292,6 @@
     //发送按钮
     NSLog(@"点击了发送按钮");
     self.textMessageView.inputTextView.text = @"";
-    [self.textMessageView.inputTextView resignFirstResponder];
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSendText:fromSender:onDate:)]) {
         [self.delegate didSendText:text fromSender:@"sender" onDate:[NSDate date]];
