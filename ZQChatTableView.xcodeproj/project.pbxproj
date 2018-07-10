@@ -11,6 +11,7 @@
 		0C3E5D6820ECC2A00011DF6F /* ZQTextToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6720ECC2A00011DF6F /* ZQTextToolView.m */; };
 		0C3E5D6A20ECC2CF0011DF6F /* ZQTextToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */; };
 		0C5CBD9820F449F5001CDF64 /* ZQMenuCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CBD9720F449F5001CDF64 /* ZQMenuCollectionLayout.m */; };
+		0C5CBD9B20F453D9001CDF64 /* ZQMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5CBD9A20F453D9001CDF64 /* ZQMenuItem.m */; };
 		0C5F863820E5DB9F0073D6E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F863720E5DB9F0073D6E1 /* AppDelegate.m */; };
 		0C5F863B20E5DB9F0073D6E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F863A20E5DB9F0073D6E1 /* ViewController.m */; };
 		0C5F863E20E5DB9F0073D6E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F863C20E5DB9F0073D6E1 /* Main.storyboard */; };
@@ -63,6 +64,8 @@
 		0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZQTextToolView.xib; sourceTree = "<group>"; };
 		0C5CBD9620F449F5001CDF64 /* ZQMenuCollectionLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQMenuCollectionLayout.h; sourceTree = "<group>"; };
 		0C5CBD9720F449F5001CDF64 /* ZQMenuCollectionLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQMenuCollectionLayout.m; sourceTree = "<group>"; };
+		0C5CBD9920F453D9001CDF64 /* ZQMenuItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQMenuItem.h; sourceTree = "<group>"; };
+		0C5CBD9A20F453D9001CDF64 /* ZQMenuItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQMenuItem.m; sourceTree = "<group>"; };
 		0C5F863320E5DB9F0073D6E1 /* ZQChatTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZQChatTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C5F863620E5DB9F0073D6E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0C5F863720E5DB9F0073D6E1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -240,6 +243,8 @@
 				0C5F867720E5DF090073D6E1 /* ZQMessage.h */,
 				0C5F867820E5DF090073D6E1 /* ZQMessage.m */,
 				0C5F867A20E5DF210073D6E1 /* ZQMessageEnable.h */,
+				0C5CBD9920F453D9001CDF64 /* ZQMenuItem.h */,
+				0C5CBD9A20F453D9001CDF64 /* ZQMenuItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -533,6 +538,7 @@
 				0C5F867920E5DF090073D6E1 /* ZQMessage.m in Sources */,
 				0C5F867620E5DE9B0073D6E1 /* ZQMessageFrame.m in Sources */,
 				0C3E5D6820ECC2A00011DF6F /* ZQTextToolView.m in Sources */,
+				0C5CBD9B20F453D9001CDF64 /* ZQMenuItem.m in Sources */,
 				0C7820DC20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

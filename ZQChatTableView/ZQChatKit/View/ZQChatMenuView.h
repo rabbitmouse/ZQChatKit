@@ -10,4 +10,6 @@
 
 @interface ZQChatMenuView : UIView
 
+@property (nonatomic, strong) NSMutableArray *menus;
+
 @end
