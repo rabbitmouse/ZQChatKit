@@ -18,7 +18,14 @@
 
 #define TextViewDefualtHeight 40
 
-@interface ZQChatViewController ()<UITableViewDelegate, UITableViewDataSource, ZQMessageInputViewDelegate, ZQMessageCellDelegate, ZQChatMenuViewDelegate>
+@interface ZQChatViewController ()
+<UITableViewDelegate,
+UITableViewDataSource,
+UIImagePickerControllerDelegate,
+UINavigationControllerDelegate,
+ZQMessageInputViewDelegate,
+ZQMessageCellDelegate,
+ZQChatMenuViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *bottomToolView;
 
@@ -80,6 +87,9 @@
     self.delegate = self;
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
+    self.tableview.estimatedRowHeight =0;
+    self.tableview.estimatedSectionHeaderHeight =0;
+    self.tableview.estimatedSectionFooterHeight =0;
     [self.tableview registerClass:[ZQMessageCell class] forCellReuseIdentifier:NSStringFromClass([ZQMessageCell class])];
     
     ZQTextToolView *textView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZQTextToolView class]) owner:nil options:nil].firstObject;
@@ -216,6 +226,13 @@
 
 #pragma mark - Layout Message Input View Helper Method
 
+- (void)reloadChatView {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableview reloadData];
+        [self scrollToBottomAnimated:YES];
+    });
+}
+
 - (void)scrollToBottomAnimated:(BOOL)animated {
     
     NSInteger rows = [self.tableview numberOfRowsInSection:0];
@@ -292,6 +309,20 @@
     }
 }
 
+- (void)showPhotoWithSourceType:(BOOL)isCamera {
+    if (isCamera && ![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        return;
+    }
+    if (!isCamera && ![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        return;
+    }
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.sourceType = isCamera ? UIImagePickerControllerSourceTypeCamera : UIImagePickerControllerSourceTypePhotoLibrary;
+    picker.allowsEditing = YES;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
 #pragma mark - ZQMessageInputViewDelegate
 - (void)inputTextViewWillBeginEditing:(ZQMessageTextView *)messageInputTextView {
     self.inputViewType = ZQChatInputViewTypeText;
@@ -343,10 +374,12 @@
             case 0:
                 //拍照
                 NSLog(@"点击了拍照");
+                [self showPhotoWithSourceType:YES];
                 break;
             case 1:
                 //相册
                 NSLog(@"点击了相册");
+                [self showPhotoWithSourceType:NO];
                 break;
             case 2:
                 //地点
@@ -357,6 +390,20 @@
         }
     }
 }
+
+#pragma mark - UIImagePickerViewDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didSendPhoto:fromSender:onDate:)]) {
+            [self.delegate didSendPhoto:image fromSender:@"self" onDate:[NSDate date]];
+        }
+    }];
+}
+
+//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
 #pragma mark - getter & setter
 - (UIColor *)senderTextColor {

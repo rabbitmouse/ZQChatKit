@@ -138,4 +138,7 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
 //滚到底部
 - (void)scrollToBottomAnimated:(BOOL)animated;
 
+//刷新界面
+- (void)reloadChatView;
+
 @end

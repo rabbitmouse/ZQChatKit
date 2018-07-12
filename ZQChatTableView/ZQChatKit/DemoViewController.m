@@ -69,8 +69,30 @@
     return self;
 }
 
+
+#pragma mark - ZQMessageTableViewControllerDelegate
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
     NSLog(@"发送者:%@ , 文字:%@",sender, text);
+    ZQMessage *message = [[ZQMessage alloc] initWithText:text UserId:@"uid" sender:sender timestamp:date];
+    message.bubbleMessageType = ZQBubbleMessageTypeSend;
+    ZQMessageFrame *messageFrame = [[ZQMessageFrame alloc] init];
+    messageFrame.message = message;
+    messageFrame.showTime = YES;
+    messageFrame.shouldShowUserName = YES;
+    [self.dataSource addObject:messageFrame];
+    [self reloadChatView];
+}
+
+- (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
+    NSLog(@"发送者：%@， 发送的图片", sender);
+    ZQMessage *message = [[ZQMessage alloc] initWithPhoto:photo UserId:@"uid" thumbnailUrl:nil originPhotoUrl:nil sender:sender timestamp:date];
+    message.bubbleMessageType = ZQBubbleMessageTypeSend;
+    ZQMessageFrame *messageFrame = [[ZQMessageFrame alloc] init];
+    messageFrame.message = message;
+    messageFrame.showTime = YES;
+    messageFrame.shouldShowUserName = YES;
+    [self.dataSource addObject:messageFrame];
+    [self reloadChatView];
 }
 
 @end
