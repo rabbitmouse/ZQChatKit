@@ -44,9 +44,21 @@
 - (void)didSendTextAction:(NSString *)text;
 
 /**
+ *  发送语音消息
+ *
+ *  @param data 目标语音数据
+ */
+- (void)didSendVoiceAction:(NSData *)data;
+
+/**
  *  点击+号按钮Action
  */
 - (void)didSelectedMultipleMediaAction;
+
+/**
+ *  点击语音按钮Action
+ */
+- (void)didSelectedVoiceMediaAction;
 
 @end
 
@@ -58,6 +70,10 @@
  *  用于输入文本消息的输入框
  */
 @property (weak, nonatomic) IBOutlet ZQMessageTextView *inputTextView;
+/**
+ *  用于录音的按钮
+ */
+@property (weak, nonatomic) IBOutlet UIButton *recordButton;
 
 /**
  *  获取输入框内容字体行高

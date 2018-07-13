@@ -93,6 +93,7 @@ ZQChatMenuViewDelegate>
     [self.tableview registerClass:[ZQMessageCell class] forCellReuseIdentifier:NSStringFromClass([ZQMessageCell class])];
     
     ZQTextToolView *textView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZQTextToolView class]) owner:nil options:nil].firstObject;
+    textView.recordButton.alpha = 0;
     textView.delegate = self;
     [self.bottomToolView addSubview:textView];
     [textView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -276,7 +277,8 @@ ZQChatMenuViewDelegate>
 - (void)menuViewNeedHide:(BOOL)nHide {
     if (nHide && self.inputViewType == ZQChatInputViewTypeTool) {
         [self.textMessageView.inputTextView becomeFirstResponder];
-    } else {
+    } else if (!nHide && self.inputViewType == ZQChatInputViewTypeTool) {
+        [self showVoiceView:NO];
         [self.textMessageView.inputTextView resignFirstResponder];
     }
     
@@ -301,12 +303,39 @@ ZQChatMenuViewDelegate>
     }
 }
 
+- (void)showVoiceView:(BOOL)show {
+    if (!show && self.inputViewType == ZQChatInputViewTypeVoice) {
+        [self.textMessageView.inputTextView becomeFirstResponder];
+    }
+    
+    if (show) {
+        [self.textMessageView.inputTextView resignFirstResponder];
+        [self menuViewNeedHide:YES];
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            self.textMessageView.inputTextView.alpha = 0;
+            self.textMessageView.recordButton.alpha = 1;
+            self.toolBottomLayout.constant = 0;
+            [self.view layoutIfNeeded];
+        }];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            self.textMessageView.inputTextView.alpha = 1;
+            self.textMessageView.recordButton.alpha = 0;
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
+
 - (void)viewDidTap:(UITapGestureRecognizer *)tap {
-    self.inputViewType = ZQInputViewTypeNormal;
-    [self.textMessageView.inputTextView resignFirstResponder];
-    if (self.inputViewType != ZQChatInputViewTypeText) {
+    if (self.inputViewType == ZQChatInputViewTypeVoice) {
+        return;
+    }
+    if (self.inputViewType == ZQChatInputViewTypeTool) {
         [self menuViewNeedHide:YES];
     }
+    self.inputViewType = ZQInputViewTypeNormal;
+    [self.textMessageView.inputTextView resignFirstResponder];
 }
 
 - (void)showPhotoWithSourceType:(BOOL)isCamera {
@@ -353,6 +382,15 @@ ZQChatMenuViewDelegate>
     }
 }
 
+- (void)didSelectedVoiceMediaAction {
+    if (self.inputViewType != ZQChatInputViewTypeVoice) {
+        self.inputViewType = ZQChatInputViewTypeVoice;
+        [self showVoiceView:YES];
+    } else {
+        [self showVoiceView:NO];
+    }
+}
+
 #pragma mark - ZQMessageCellDelegate
 
 - (void)chatCell:(ZQMessageCell *)cell headImageDidClick:(NSString *)userId {
@@ -394,11 +432,10 @@ ZQChatMenuViewDelegate>
 #pragma mark - UIImagePickerViewDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    [picker dismissViewControllerAnimated:YES completion:^{
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didSendPhoto:fromSender:onDate:)]) {
-            [self.delegate didSendPhoto:image fromSender:@"self" onDate:[NSDate date]];
-        }
-    }];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSendPhoto:fromSender:onDate:)]) {
+        [self.delegate didSendPhoto:image fromSender:@"self" onDate:[NSDate date]];
+    }
 }
 
 //- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

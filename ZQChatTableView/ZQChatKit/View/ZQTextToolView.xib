@@ -15,8 +15,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVo-Vr-VWK">
+                    <rect key="frame" x="44" y="5" width="287" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="按住录音">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="recordButtonDown:" destination="gfZ-Yx-B2j" eventType="touchDown" id="gue-Pv-ZXX"/>
+                        <action selector="recordButtonFinish:" destination="gfZ-Yx-B2j" eventType="touchUpInside" id="0h1-5N-OPw"/>
+                        <action selector="recordButtonFinish:" destination="gfZ-Yx-B2j" eventType="touchUpOutside" id="CVe-h1-djm"/>
+                    </connections>
+                </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-Gd-2OB" customClass="ZQMessageTextView">
-                    <rect key="frame" x="5" y="5" width="326" height="34"/>
+                    <rect key="frame" x="44" y="5" width="287" height="34"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -32,24 +44,43 @@
                         <action selector="mediaBtnClicked:" destination="gfZ-Yx-B2j" eventType="touchUpInside" id="DR0-MS-BmX"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PK5-zg-Wnk">
+                    <rect key="frame" x="5" y="5" width="34" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="34" id="16B-Gv-RYS"/>
+                        <constraint firstAttribute="height" constant="34" id="W8e-LW-77a"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="chat_voice_record"/>
+                    <connections>
+                        <action selector="voiceBtnClicked:" destination="gfZ-Yx-B2j" eventType="touchUpInside" id="OAb-AT-7cm"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Saw-Gd-2OB" firstAttribute="top" secondItem="gfZ-Yx-B2j" secondAttribute="top" constant="5" id="0oV-cl-hNe"/>
                 <constraint firstAttribute="bottom" secondItem="Saw-Gd-2OB" secondAttribute="bottom" constant="5" id="0sQ-bf-be9"/>
-                <constraint firstItem="Saw-Gd-2OB" firstAttribute="leading" secondItem="gfZ-Yx-B2j" secondAttribute="leading" constant="5" id="77K-uD-Esk"/>
+                <constraint firstItem="eHd-Pj-V0g" firstAttribute="leading" secondItem="LVo-Vr-VWK" secondAttribute="trailing" constant="5" id="5Tr-p2-xyN"/>
+                <constraint firstItem="Saw-Gd-2OB" firstAttribute="leading" secondItem="PK5-zg-Wnk" secondAttribute="trailing" constant="5" id="DPr-1u-405"/>
                 <constraint firstItem="eHd-Pj-V0g" firstAttribute="leading" secondItem="Saw-Gd-2OB" secondAttribute="trailing" constant="5" id="FbA-pl-Aqo"/>
+                <constraint firstAttribute="bottom" secondItem="PK5-zg-Wnk" secondAttribute="bottom" constant="5" id="FnD-a1-JqQ"/>
+                <constraint firstItem="LVo-Vr-VWK" firstAttribute="leading" secondItem="PK5-zg-Wnk" secondAttribute="trailing" constant="5" id="LE5-Zw-S4s"/>
+                <constraint firstAttribute="bottom" secondItem="LVo-Vr-VWK" secondAttribute="bottom" constant="5" id="bdJ-sy-YIU"/>
+                <constraint firstItem="LVo-Vr-VWK" firstAttribute="top" secondItem="gfZ-Yx-B2j" secondAttribute="top" constant="5" id="bhp-Vp-52b"/>
                 <constraint firstAttribute="trailing" secondItem="eHd-Pj-V0g" secondAttribute="trailing" constant="5" id="oMd-om-JKf"/>
+                <constraint firstItem="PK5-zg-Wnk" firstAttribute="leading" secondItem="gfZ-Yx-B2j" secondAttribute="leading" constant="5" id="s3j-KI-1y3"/>
                 <constraint firstAttribute="bottom" secondItem="eHd-Pj-V0g" secondAttribute="bottom" constant="5" id="ufJ-A4-pyd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="inputTextView" destination="Saw-Gd-2OB" id="rwN-LT-2wY"/>
+                <outlet property="recordButton" destination="LVo-Vr-VWK" id="Dqk-4M-g0m"/>
             </connections>
-            <point key="canvasLocation" x="57" y="-438"/>
+            <point key="canvasLocation" x="56.5" y="-438"/>
         </view>
     </objects>
     <resources>
         <image name="Chat_take_picture" width="72" height="72"/>
+        <image name="chat_voice_record" width="72" height="72"/>
     </resources>
 </document>

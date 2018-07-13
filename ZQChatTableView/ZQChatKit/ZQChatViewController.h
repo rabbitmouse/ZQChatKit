@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
     ZQChatInputViewTypeNormal = 0 << 1,
     ZQChatInputViewTypeText,
     ZQChatInputViewTypeTool,
+    ZQChatInputViewTypeVoice,
 };
 
 
