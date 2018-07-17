@@ -35,11 +35,6 @@
 @property (nonatomic, strong) UIColor *reciveTextColor;
 
 /**
- 聊天背景颜色
- */
-@property (nonatomic, strong) UIColor *backViewColor;
-
-/**
  发送方聊天气泡图片
  */
 @property (nonatomic, strong) UIImage *senderBubbleImage;

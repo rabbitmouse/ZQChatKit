@@ -90,13 +90,17 @@ ZQChatMenuViewDelegate>
     [self addKeyboardAction];
 }
 
+- (void)viewWillLayoutSubviews {
+    self.tableview.backgroundColor = self.backViewColor;
+}
+
 - (void)configUI {
     self.delegate = self;
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
-    self.tableview.estimatedRowHeight =0;
-    self.tableview.estimatedSectionHeaderHeight =0;
-    self.tableview.estimatedSectionFooterHeight =0;
+    self.tableview.estimatedRowHeight = 0;
+    self.tableview.estimatedSectionHeaderHeight = 0;
+    self.tableview.estimatedSectionFooterHeight = 0;
     [self.tableview registerClass:[ZQMessageCell class] forCellReuseIdentifier:NSStringFromClass([ZQMessageCell class])];
     
     ZQTextToolView *textView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZQTextToolView class]) owner:nil options:nil].firstObject;
@@ -180,7 +184,6 @@ ZQChatMenuViewDelegate>
     ZQMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZQMessageCell class])];
     cell.senderTextColor = self.senderTextColor;
     cell.reciveTextColor = self.reciveTextColor;
-    cell.backViewColor = self.backViewColor;
     cell.senderBubbleImage = self.senderBubbleImage;
     cell.reciveBubbleImage = self.reciveBubbleImage;
     cell.senderAvatarImage = self.senderAvatarImage;

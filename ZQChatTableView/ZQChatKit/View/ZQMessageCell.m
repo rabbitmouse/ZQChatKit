@@ -146,6 +146,7 @@
     switch (message.messageMediaType) {
         case ZQBubbleMessageMediaTypeText:
             [self.btnContent setTitle:message.text forState:UIControlStateNormal];
+            self.btnContent.message = message;
             break;
         case ZQBubbleMessageMediaTypePhoto:
         case ZQBubbleMessageMediaTypeVoice: {

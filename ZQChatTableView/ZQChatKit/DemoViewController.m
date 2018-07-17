@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     [self configModel];
 }
 
@@ -55,14 +55,14 @@
     photoFrame.showTime = YES;
     [self.dataSource addObject:photoFrame];
     
-    ZQMessage *voiceMessage = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:@"21" sender:@"voice" timestamp:[NSDate date] isRead:YES];
+    ZQMessage *voiceMessage = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:12 sender:@"voice" timestamp:[NSDate date] isRead:YES];
     ZQMessageFrame *voiceFrame = [[ZQMessageFrame alloc] init];
     voiceFrame.message = voiceMessage;
     voiceFrame.shouldShowUserName = YES;
     voiceFrame.showTime = YES;
     [self.dataSource addObject:voiceFrame];
     
-    ZQMessage *voiceMessage1 = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:@"11" sender:@"voice1" timestamp:[NSDate date] isRead:NO];
+    ZQMessage *voiceMessage1 = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:5 sender:@"voice1" timestamp:[NSDate date] isRead:NO];
     voiceMessage1.bubbleMessageType = ZQBubbleMessageTypeReceive;
     ZQMessageFrame *voiceFrame1 = [[ZQMessageFrame alloc] init];
     voiceFrame1.message = voiceMessage1;
@@ -73,9 +73,8 @@
     });
 }
 
-/*
+/**
  * 使用了xib，子类需要实现这个方法
- **
  */
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:NSStringFromClass([ZQChatViewController class]) bundle:nibBundleOrNil];

@@ -96,17 +96,29 @@
 
 - (void)hiddenContentViews {
     switch (self.message.messageMediaType) {
+        case ZQBubbleMessageMediaTypeText:
+            self.backImageView.hidden = YES;
+            self.animationVoiceImageView.hidden = YES;
+            self.voiceDurationLabel.hidden = YES;
+            self.videoPlayImageView.hidden = YES;
+            self.animationVoiceImageView.hidden = YES;
+            self.voiceUnreadDotImageView.hidden = YES;
+            break;
         case ZQBubbleMessageMediaTypePhoto:
             self.backImageView.hidden = NO;
             self.animationVoiceImageView.hidden = YES;
             self.voiceDurationLabel.hidden = YES;
             self.videoPlayImageView.hidden = YES;
+            self.animationVoiceImageView.hidden = YES;
+            self.voiceUnreadDotImageView.hidden = YES;
             break;
         case ZQBubbleMessageMediaTypeVoice:
             self.backImageView.hidden = YES;
             self.animationVoiceImageView.hidden = NO;
             self.voiceDurationLabel.hidden = NO;
             self.videoPlayImageView.hidden = NO;
+            self.animationVoiceImageView.hidden = NO;
+            self.voiceUnreadDotImageView.hidden = self.message.isRead;
             break;
         default:
             break;
@@ -141,11 +153,8 @@
             UIImageView *animationVoiceImageView = [UIImageView messageVoiceAnimationImageViewWithBubbleMessageType:message.bubbleMessageType];
             [self addSubview:animationVoiceImageView];
             self.animationVoiceImageView = animationVoiceImageView;
-            self.animationVoiceImageView.hidden = NO;
             
             self.voiceDurationLabel.text = [NSString stringWithFormat:@"%ld\'\'", message.voiceDuration];
-            
-            self.voiceUnreadDotImageView.hidden = message.isRead;
         }
             break;
             
