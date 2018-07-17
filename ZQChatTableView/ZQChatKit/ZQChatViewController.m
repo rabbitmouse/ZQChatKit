@@ -11,6 +11,8 @@
 #import "ZQMessageCell.h"
 #import "ZQTextToolView.h"
 #import "ZQChatMenuView.h"
+#import "ZQVoiceRecordHUD.h"
+#import "ZQRecordHelper.h"
 
 #import <Masonry/Masonry.h>
 
@@ -31,6 +33,10 @@ ZQChatMenuViewDelegate>
 
 @property (nonatomic, strong) ZQTextToolView *textMessageView;
 @property (nonatomic, strong) ZQChatMenuView *menuView;
+@property (nonatomic, strong) ZQVoiceRecordHUD *recordHud;
+@property (nonatomic, strong) ZQRecordHelper *recordHelper;
+@property (nonatomic, strong) NSString *getRecorderPath;
+
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolBottomLayout;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolHeightLayout;
@@ -43,7 +49,10 @@ ZQChatMenuViewDelegate>
  *  记录旧的textView contentSize Heigth
  */
 @property (nonatomic, assign) CGFloat previousTextViewContentHeight;
-
+/**
+ *  判断是不是超出了录音最大时长
+ */
+@property (nonatomic) BOOL isMaxTimeStop;
 
 @end
 
@@ -72,8 +81,6 @@ ZQChatMenuViewDelegate>
     // remove KVO
     [self.textMessageView.inputTextView removeObserver:self forKeyPath:@"contentSize"];
     [self.textMessageView.inputTextView setEditable:NO];
-    
-    
 }
 
 - (void)viewDidLoad {
@@ -391,6 +398,77 @@ ZQChatMenuViewDelegate>
     }
 }
 
+- (void)prepareRecordingVoiceActionWithCompletion:(BOOL (^)(void))completion {
+    [self prepareRecordWithCompletion:completion];
+}
+
+- (void)didStartRecordingVoiceAction {
+    [self startRecord];
+}
+
+- (void)didCancelRecordingVoiceAction {
+    [self cancelRecord];
+}
+
+- (void)didFinishRecoingVoiceAction {
+    if (self.isMaxTimeStop == NO) {
+        [self finishRecorded];
+    } else {
+        self.isMaxTimeStop = NO;
+    }
+}
+
+- (void)didDragOutsideAction {
+    [self pauseRecord];
+}
+
+- (void)didDragInsideAction {
+    [self resumeRecord];
+}
+
+#pragma mark - Voice Recording Helper Method
+
+- (void)prepareRecordWithCompletion:(ZQPrepareRecorderCompletion)completion {
+    [self.voiceRecordHelper prepareRecordingWithPath:[self getRecorderPath] prepareRecorderCompletion:completion];
+}
+
+- (void)startRecord {
+    [self.recordHud startRecordingHUDAtView:self.view];
+    [self.voiceRecordHelper startRecordingWithStartRecorderCompletion:^{
+    }];
+}
+
+- (void)finishRecorded {
+    WEAKSELF
+    [self.recordHud stopRecordCompled:^(BOOL fnished) {
+        weakSelf.recordHud = nil;
+    }];
+    [self.voiceRecordHelper stopRecordingWithStopRecorderCompletion:^{
+        if ([weakSelf.delegate respondsToSelector:@selector(didSendVoice:voiceDuration:fromSender:onDate:)]) {
+            [weakSelf.delegate didSendVoice:weakSelf.recordHelper.recordPath voiceDuration:weakSelf.recordHelper.recordDuration.intValue fromSender:@"sender" onDate:[NSDate date]];
+        }
+    }];
+}
+
+- (void)pauseRecord {
+    [self.recordHud pauseRecord];
+}
+
+- (void)resumeRecord {
+    [self.recordHud resaueRecord];
+}
+
+- (void)cancelRecord {
+    WEAKSELF
+    [self.recordHud cancelRecordCompled:^(BOOL fnished) {
+        weakSelf.recordHud = nil;
+    }];
+    [self.voiceRecordHelper cancelledDeleteWithCompletion:^{
+        
+    }];
+}
+
+
 #pragma mark - ZQMessageCellDelegate
 
 - (void)chatCell:(ZQMessageCell *)cell headImageDidClick:(NSString *)userId {
@@ -438,11 +516,48 @@ ZQChatMenuViewDelegate>
     }
 }
 
-//- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
 
 #pragma mark - getter & setter
+- (ZQVoiceRecordHUD *)recordHud {
+    if (!_recordHud) {
+        _recordHud = [[ZQVoiceRecordHUD alloc] initWithFrame:CGRectMake(0, 0, 140, 140)];
+    }
+    return _recordHud;
+}
+
+- (ZQRecordHelper *)voiceRecordHelper {
+    if (!_recordHelper) {
+        _isMaxTimeStop = NO;
+        
+        WEAKSELF
+        _recordHelper = [[ZQRecordHelper alloc] init];
+        _recordHelper.maxTimeStopRecorderCompletion = ^{
+            // Unselect and unhilight the hold down button, and set isMaxTimeStop to YES.
+            UIButton *holdDown = weakSelf.textMessageView.recordButton;
+            holdDown.selected = NO;
+            holdDown.highlighted = NO;
+            weakSelf.isMaxTimeStop = YES;
+            
+            [weakSelf finishRecorded];
+        };
+        _recordHelper.peakPowerForChannel = ^(float peakPowerForChannel) {
+            weakSelf.recordHud.peakPower = peakPowerForChannel;
+        };
+        _recordHelper.maxRecordTime = 60;
+    }
+    return _recordHelper;
+}
+
+- (NSString *)getRecorderPath {
+    NSString *recorderPath = nil;
+    recorderPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];
+    recorderPath = [recorderPath stringByAppendingFormat:@"%@-MySound.m4a", [dateFormatter stringFromDate:now]];
+    return recorderPath;
+}
+
 - (UIColor *)senderTextColor {
     if (_senderTextColor == nil) {
         return ZQConfigStyle.senderDefualtColor;

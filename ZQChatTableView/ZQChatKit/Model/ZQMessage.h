@@ -24,7 +24,7 @@
 
 @property (nonatomic, copy) NSString *voicePath;
 @property (nonatomic, copy) NSString *voiceUrl;
-@property (nonatomic, copy) NSString *voiceDuration;
+@property (nonatomic, assign) NSInteger voiceDuration;
 
 @property (nonatomic, strong) UIImage *avatar;
 @property (nonatomic, copy) NSString *avatarUrl;
@@ -106,7 +106,7 @@
 - (instancetype)initWithVoicePath:(NSString *)voicePath
                            UserId:(NSString *)userId
                          voiceUrl:(NSString *)voiceUrl
-                    voiceDuration:(NSString *)voiceDuration
+                    voiceDuration:(NSInteger )voiceDuration
                            sender:(NSString *)sender
                         timestamp:(NSDate *)timestamp
                            isRead:(BOOL)isRead;

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C18D5C920FC459800C58023 /* UIImageView+ZQChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5C820FC459800C58023 /* UIImageView+ZQChat.m */; };
+		0C18D5D020FC47B900C58023 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5CC20FC47B900C58023 /* FLAnimatedImage.m */; };
+		0C18D5D120FC47B900C58023 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5CD20FC47B900C58023 /* FLAnimatedImageView.m */; };
+		0C18D5D420FC4EDE00C58023 /* ZQAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5D320FC4EDE00C58023 /* ZQAudioPlayer.m */; };
+		0C18D5D720FC75A600C58023 /* ZQVoiceRecordHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5D620FC75A600C58023 /* ZQVoiceRecordHUD.m */; };
+		0C18D5DA20FC9CDF00C58023 /* ZQRecordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5D920FC9CDF00C58023 /* ZQRecordHelper.m */; };
 		0C22ED3920EDBA7C00CD03CE /* ZQChatMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22ED3820EDBA7C00CD03CE /* ZQChatMenuView.m */; };
 		0C3E5D6820ECC2A00011DF6F /* ZQTextToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6720ECC2A00011DF6F /* ZQTextToolView.m */; };
 		0C3E5D6A20ECC2CF0011DF6F /* ZQTextToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */; };
@@ -57,6 +63,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C18D5C720FC459800C58023 /* UIImageView+ZQChat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ZQChat.h"; sourceTree = "<group>"; };
+		0C18D5C820FC459800C58023 /* UIImageView+ZQChat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZQChat.m"; sourceTree = "<group>"; };
+		0C18D5CC20FC47B900C58023 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		0C18D5CD20FC47B900C58023 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		0C18D5CE20FC47B900C58023 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		0C18D5CF20FC47B900C58023 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		0C18D5D220FC4EDE00C58023 /* ZQAudioPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQAudioPlayer.h; sourceTree = "<group>"; };
+		0C18D5D320FC4EDE00C58023 /* ZQAudioPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQAudioPlayer.m; sourceTree = "<group>"; };
+		0C18D5D520FC75A600C58023 /* ZQVoiceRecordHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQVoiceRecordHUD.h; sourceTree = "<group>"; };
+		0C18D5D620FC75A600C58023 /* ZQVoiceRecordHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQVoiceRecordHUD.m; sourceTree = "<group>"; };
+		0C18D5D820FC9CDF00C58023 /* ZQRecordHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQRecordHelper.h; sourceTree = "<group>"; };
+		0C18D5D920FC9CDF00C58023 /* ZQRecordHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQRecordHelper.m; sourceTree = "<group>"; };
 		0C22ED3720EDBA7C00CD03CE /* ZQChatMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQChatMenuView.h; sourceTree = "<group>"; };
 		0C22ED3820EDBA7C00CD03CE /* ZQChatMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQChatMenuView.m; sourceTree = "<group>"; };
 		0C3E5D6620ECC2A00011DF6F /* ZQTextToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQTextToolView.h; sourceTree = "<group>"; };
@@ -150,6 +168,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C18D5CA20FC47B000C58023 /* Vender */ = {
+			isa = PBXGroup;
+			children = (
+				0C18D5CB20FC47B900C58023 /* FLAnimatedImageView */,
+			);
+			path = Vender;
+			sourceTree = "<group>";
+		};
+		0C18D5CB20FC47B900C58023 /* FLAnimatedImageView */ = {
+			isa = PBXGroup;
+			children = (
+				0C18D5CC20FC47B900C58023 /* FLAnimatedImage.m */,
+				0C18D5CD20FC47B900C58023 /* FLAnimatedImageView.m */,
+				0C18D5CE20FC47B900C58023 /* FLAnimatedImage.h */,
+				0C18D5CF20FC47B900C58023 /* FLAnimatedImageView.h */,
+			);
+			path = FLAnimatedImageView;
+			sourceTree = "<group>";
+		};
 		0C5F862A20E5DB9F0073D6E1 = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +247,7 @@
 		0C5F866820E5DC080073D6E1 /* ZQChatKit */ = {
 			isa = PBXGroup;
 			children = (
+				0C18D5CA20FC47B000C58023 /* Vender */,
 				0C5F866C20E5DCB20073D6E1 /* ZQChatViewController.h */,
 				0C5F866D20E5DCB20073D6E1 /* ZQChatViewController.m */,
 				0C5F866E20E5DCB20073D6E1 /* ZQChatViewController.xib */,
@@ -231,6 +269,8 @@
 				0C7820DA20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m */,
 				0C5F867D20E604020073D6E1 /* NSString+ZQChat.h */,
 				0C5F867E20E604020073D6E1 /* NSString+ZQChat.m */,
+				0C18D5C720FC459800C58023 /* UIImageView+ZQChat.h */,
+				0C18D5C820FC459800C58023 /* UIImageView+ZQChat.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -280,6 +320,12 @@
 				0C7820D020EB4F6E001EBC55 /* ZQImageBrowser.m */,
 				0C7820CB20EB49CB001EBC55 /* ZQConfigStyle.h */,
 				0C7820CC20EB49CB001EBC55 /* ZQConfigStyle.m */,
+				0C18D5D220FC4EDE00C58023 /* ZQAudioPlayer.h */,
+				0C18D5D320FC4EDE00C58023 /* ZQAudioPlayer.m */,
+				0C18D5D520FC75A600C58023 /* ZQVoiceRecordHUD.h */,
+				0C18D5D620FC75A600C58023 /* ZQVoiceRecordHUD.m */,
+				0C18D5D820FC9CDF00C58023 /* ZQRecordHelper.h */,
+				0C18D5D920FC9CDF00C58023 /* ZQRecordHelper.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -521,9 +567,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C5F867320E5DDA90073D6E1 /* ZQMessageCell.m in Sources */,
+				0C18D5DA20FC9CDF00C58023 /* ZQRecordHelper.m in Sources */,
 				0C7820D120EB4F6E001EBC55 /* ZQImageBrowser.m in Sources */,
 				0C5CBD9820F449F5001CDF64 /* ZQMenuCollectionLayout.m in Sources */,
 				0C5F863B20E5DB9F0073D6E1 /* ViewController.m in Sources */,
+				0C18D5D420FC4EDE00C58023 /* ZQAudioPlayer.m in Sources */,
 				0CCB09D520F34F9D00ECD6A6 /* DemoViewController.m in Sources */,
 				0C5F864620E5DBA80073D6E1 /* main.m in Sources */,
 				0C5F867F20E604020073D6E1 /* NSString+ZQChat.m in Sources */,
@@ -532,12 +580,16 @@
 				0C5F866B20E5DC3C0073D6E1 /* ZQChatTableView.m in Sources */,
 				0C7820D920EB564D001EBC55 /* ZQMessageTextView.m in Sources */,
 				0C5F868220E60B420073D6E1 /* ZQMessageContentView.m in Sources */,
+				0C18D5D020FC47B900C58023 /* FLAnimatedImage.m in Sources */,
 				0C5F863820E5DB9F0073D6E1 /* AppDelegate.m in Sources */,
+				0C18D5D720FC75A600C58023 /* ZQVoiceRecordHUD.m in Sources */,
 				0CCB09D820F360D000ECD6A6 /* ZQMenuCell.m in Sources */,
 				0C5F866F20E5DCB20073D6E1 /* ZQChatViewController.m in Sources */,
 				0C5F867920E5DF090073D6E1 /* ZQMessage.m in Sources */,
+				0C18D5D120FC47B900C58023 /* FLAnimatedImageView.m in Sources */,
 				0C5F867620E5DE9B0073D6E1 /* ZQMessageFrame.m in Sources */,
 				0C3E5D6820ECC2A00011DF6F /* ZQTextToolView.m in Sources */,
+				0C18D5C920FC459800C58023 /* UIImageView+ZQChat.m in Sources */,
 				0C5CBD9B20F453D9001CDF64 /* ZQMenuItem.m in Sources */,
 				0C7820DC20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m in Sources */,
 			);

@@ -10,11 +10,12 @@
 #import "ZQMessageFrame.h"
 #import "ZQMessage.h"
 #import "ZQImageBrowser.h"
+#import "ZQAudioPlayer.h"
 
 #import "NSString+ZQChat.h"
 #import "UIImageView+WebCache.h"
 
-@interface ZQMessageCell() {
+@interface ZQMessageCell() <ZQAudioPlayerDelegate> {
     UIImageView *_headImageBackView;
 }
 
@@ -125,7 +126,7 @@
     
     //content-background image
     UIImage *normal;
-    if (message.messageMediaType == ZQBubbleMessageMediaTypeText) {
+    if (message.messageMediaType == ZQBubbleMessageMediaTypeText || message.messageMediaType == ZQBubbleMessageMediaTypeVoice) {
         if (message.bubbleMessageType == ZQBubbleMessageTypeSend) {
             normal = self.senderBubbleImage;
             normal = [normal resizableImageWithCapInsets:UIEdgeInsetsMake(35, 10, 10, 22)];
@@ -147,28 +148,8 @@
             [self.btnContent setTitle:message.text forState:UIControlStateNormal];
             break;
         case ZQBubbleMessageMediaTypePhoto:
-        {
-            self.btnContent.backImageView.hidden = NO;
-            self.btnContent.imageView.contentMode = UIViewContentModeScaleAspectFit;
-            UIImage *defualtPhoto = [UIImage imageNamed:@"defualtPhoto"];
-            if (message.photo) {
-                self.btnContent.backImageView.image = message.photo;
-            } else if (message.thumbnailUrl) {
-                [self.btnContent.backImageView sd_setImageWithURL:[NSURL URLWithString:message.thumbnailUrl] placeholderImage:defualtPhoto];
-            } else if (message.originPhotoUrl) {
-                [self.btnContent.backImageView sd_setImageWithURL:[NSURL URLWithString:message.originPhotoUrl] placeholderImage:defualtPhoto];
-            } else {
-                self.btnContent.backImageView.image = defualtPhoto;
-            }
-            
-//            [self makeMaskView:self.btnContent.backImageView withImage:normal];
-        }
-            break;
-        case ZQBubbleMessageMediaTypeVideo:
-        {
-//            self.btnContent.voiceBackView.hidden = NO;
-//            self.btnContent.second.text = [NSString stringWithFormat:@"%@'s Voice",message.strVoiceTime];
-//            _songData = message.voice;
+        case ZQBubbleMessageMediaTypeVoice: {
+            self.btnContent.message = message;
         }
             break;
             
@@ -222,6 +203,37 @@
         [menu setTargetRect:self.btnContent.frame inView:self.btnContent.superview];
         [menu setMenuVisible:YES animated:YES];
     }
+    // show voice
+    else if (self.messageFrame.message.messageMediaType == ZQBubbleMessageMediaTypeVoice) {
+        if (self.messageFrame.message.voicePath || self.messageFrame.message.voiceUrl) {
+            //animation
+            [self.btnContent.animationVoiceImageView startAnimating];
+            [self.btnContent.animationVoiceImageView performSelector:@selector(stopAnimating) withObject:nil afterDelay:self.messageFrame.message.voiceDuration];
+            //info
+            self.btnContent.voiceUnreadDotImageView.hidden = YES;
+            self.messageFrame.message.isRead = YES;
+            //voice
+            NSError *err = nil;
+            NSData *audioData = [NSData dataWithContentsOfFile:self.messageFrame.message.voicePath options:0 error:&err];
+            [[ZQAudioPlayer sharedInstance] playSongWithData:audioData];
+        }
+    }
+}
+
+#pragma mark - ZQAudioPlayerDelegate
+
+- (void)ZQAudioPlayerBeiginLoadVoice {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(chatCell:contentButtonClick:)]) {
+        [self.delegate chatCell:self contentButtonClick:self.messageFrame.message.userId];
+    }
+}
+
+- (void)ZQAudioPlayerBeiginPlay {
+    //
+}
+
+- (void)ZQAudioPlayerDidFinishPlay {
+    [self.btnContent.animationVoiceImageView stopAnimating];
 }
 
 @end

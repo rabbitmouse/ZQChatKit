@@ -44,11 +44,29 @@
 - (void)didSendTextAction:(NSString *)text;
 
 /**
- *  发送语音消息
- *
- *  @param data 目标语音数据
+ *  按下錄音按鈕 "準備" 錄音
  */
-- (void)didSendVoiceAction:(NSData *)data;
+- (void)prepareRecordingVoiceActionWithCompletion:(BOOL (^)(void))completion;
+/**
+ *  开始录音
+ */
+- (void)didStartRecordingVoiceAction;
+/**
+ *  手指向上滑动取消录音
+ */
+- (void)didCancelRecordingVoiceAction;
+/**
+ *  松开手指完成录音
+ */
+- (void)didFinishRecoingVoiceAction;
+/**
+ *  当手指离开按钮的范围内时，主要为了通知外部的HUD
+ */
+- (void)didDragOutsideAction;
+/**
+ *  当手指再次进入按钮的范围内时，主要也是为了通知外部的HUD
+ */
+- (void)didDragInsideAction;
 
 /**
  *  点击+号按钮Action

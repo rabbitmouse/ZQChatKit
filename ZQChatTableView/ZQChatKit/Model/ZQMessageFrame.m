@@ -62,8 +62,7 @@
             contentSize.width = MAX(contentSize.width, 40);
             break;
         case ZQBubbleMessageMediaTypePhoto:
-        case ZQBubbleMessageMediaTypeVideo:
-        case ZQBubbleMessageMediaTypeVoice: {
+        case ZQBubbleMessageMediaTypeVideo: {
             if (_message.photo) {
                 CGFloat pWidth = _message.photo.size.width;
                 CGFloat pHeight = _message.photo.size.height;
@@ -72,6 +71,10 @@
             } else {
                 contentSize = CGSizeMake(ChatPicWH, ChatPicWH);
             }
+        }
+            break;
+        case ZQBubbleMessageMediaTypeVoice: {
+            contentSize = CGSizeMake(ChatPicWH / 2, 30);
         }
             break;
         default:

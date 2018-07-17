@@ -8,15 +8,25 @@
 
 #import "ZQTextToolView.h"
 #import <AVFoundation/AVFoundation.h>
+#import "ZQChatDefault.h"
 
 @interface ZQTextToolView() <UITextViewDelegate, AVAudioRecorderDelegate> {
     BOOL _isbeginVoiceRecord;
-    NSInteger _playTime;
+    CGFloat _playTime;
     NSString *_docmentFilePath;
 }
 
 @property (nonatomic, strong) NSTimer *playTimer;
 @property (nonatomic, strong) AVAudioRecorder *recorder;
+/**
+ *  是否取消錄音
+ */
+@property (nonatomic, assign, readwrite) BOOL isCancelled;
+
+/**
+ *  是否正在錄音
+ */
+@property (nonatomic, assign, readwrite) BOOL isRecording;
 
 @end
 
@@ -44,21 +54,6 @@
 }
 
 #pragma mark - private methods
-- (void)countVoiceTime {
-    _playTime ++;
-    if (_playTime >= 60) {
-        [self endRecordVoice:self.recordButton];
-    }
-}
-
-- (void)endRecordVoice:(UIButton *)button
-{
-    [_recorder stop];
-    [_playTimer invalidate];
-    _playTimer = nil;
-    //缓冲消失时间 (最好有block回调消失完成)
-    [button setTitle:@"按住说话" forState:UIControlStateNormal];
-}
 
 #pragma mark - action
 - (IBAction)mediaBtnClicked:(id)sender {
@@ -74,47 +69,69 @@
 
 - (IBAction)recordButtonDown:(UIButton *)sender {
     [sender setTitle:@"松开结束" forState:UIControlStateNormal];
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    NSError *err = nil;
-    [audioSession setCategory :AVAudioSessionCategoryRecord error:&err];
-    if (err) {
-        NSLog(@"audioSession: %@ %zd %@", [err domain], [err code], [[err userInfo] description]);
-        return;
+    self.isCancelled = NO;
+    self.isRecording = NO;
+    if ([self.delegate respondsToSelector:@selector(prepareRecordingVoiceActionWithCompletion:)]) {
+        WEAKSELF
+        
+        //這邊回調 return 的 YES, 或 NO, 可以讓底層知道該次錄音是否成功, 進而處理無用的 record 對象
+        [self.delegate prepareRecordingVoiceActionWithCompletion:^BOOL{
+            STRONGSELF
+            
+            //這邊要判斷回調回來的時候, 使用者是不是已經早就鬆開手了
+            if (strongSelf && !strongSelf.isCancelled) {
+                strongSelf.isRecording = YES;
+                [strongSelf.delegate didStartRecordingVoiceAction];
+                return YES;
+            } else {
+                return NO;
+            }
+        }];
     }
-    [audioSession setActive:YES error:&err];
-    if (err) {
-        NSLog(@"audioSession: %@ %zd %@", [err domain], [err code], [[err userInfo] description]);
-        return;
-    }
-    
-    NSDictionary *recordSetting = @{
-                                    AVEncoderAudioQualityKey : [NSNumber numberWithInt:AVAudioQualityMin],
-                                    AVEncoderBitRateKey : [NSNumber numberWithInt:16],
-                                    AVFormatIDKey : [NSNumber numberWithInt:kAudioFormatLinearPCM],
-                                    AVNumberOfChannelsKey : @2,
-                                    AVLinearPCMBitDepthKey : @8
-                                    };
-    NSError *error = nil;
-    NSString *docments = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-    _docmentFilePath = [NSString stringWithFormat:@"%@/%@",docments,@"123"];
-    
-    NSURL *pathURL = [NSURL fileURLWithPath:_docmentFilePath];
-    _recorder = [[AVAudioRecorder alloc] initWithURL:pathURL settings:recordSetting error:&error];
-    if (error || !_recorder) {
-        NSLog(@"recorder: %@ %zd %@", [error domain], [error code], [[error userInfo] description]);
-        return;
-    }
-    _recorder.delegate = self;
-    [_recorder prepareToRecord];
-    _recorder.meteringEnabled = YES;
-    
-    [_recorder record];
-    _playTime = 0;
-    _playTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(countVoiceTime) userInfo:nil repeats:YES];
 }
-- (IBAction)recordButtonFinish:(UIButton *)sender {
-    [self endRecordVoice:sender];
+- (IBAction)recordButtonOutside:(id)sender {
+    //如果已經開始錄音了, 才需要做拖曳出去的動作, 否則只要切換 isCancelled, 不讓錄音開始.
+    if (self.isRecording) {
+        if ([self.delegate respondsToSelector:@selector(didDragOutsideAction)]) {
+            [self.delegate didDragOutsideAction];
+        }
+    } else {
+        self.isCancelled = YES;
+    }
 }
+- (IBAction)recordButtonInside:(id)sender {
+    //如果已經開始錄音了, 才需要做拖曳回來的動作, 否則只要切換 isCancelled, 不讓錄音開始.
+    if (self.isRecording) {
+        if ([self.delegate respondsToSelector:@selector(didDragInsideAction)]) {
+            [self.delegate didDragInsideAction];
+        }
+    } else {
+        self.isCancelled = YES;
+    }
+}
+- (IBAction)recordButtonUpInside:(id)sender {
+    [sender setTitle:@"按住说话" forState:UIControlStateNormal];
+    //如果已經開始錄音了, 才需要做結束的動作, 否則只要切換 isCancelled, 不讓錄音開始.
+    if (self.isRecording) {
+        if ([self.delegate respondsToSelector:@selector(didFinishRecoingVoiceAction)]) {
+            [self.delegate didFinishRecoingVoiceAction];
+        }
+    } else {
+        self.isCancelled = YES;
+    }
+}
+- (IBAction)recordButtonUpOutside:(id)sender {
+    [sender setTitle:@"按住说话" forState:UIControlStateNormal];
+    //如果已經開始錄音了, 才需要做取消的動作, 否則只要切換 isCancelled, 不讓錄音開始.
+    if (self.isRecording) {
+        if ([self.delegate respondsToSelector:@selector(didCancelRecordingVoiceAction)]) {
+            [self.delegate didCancelRecordingVoiceAction];
+        }
+    } else {
+        self.isCancelled = YES;
+    }
+}
+
 
 #pragma mark - Message input view
 
@@ -158,24 +175,6 @@
         return NO;
     }
     return YES;
-}
-
-#pragma mark - AVAudioRecorderDelegate
-
-- (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag
-{
-    NSURL *url = [NSURL fileURLWithPath:_docmentFilePath];
-    NSError *err = nil;
-    NSData *audioData = [NSData dataWithContentsOfFile:[url path] options:0 error:&err];
-    if (audioData) {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(didSendVoiceAction:)]) {
-            [self.delegate didSendVoiceAction:audioData];
-        }
-        self.recordButton.enabled = NO;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.recordButton.enabled = YES;
-        });
-    }
 }
 
 @end

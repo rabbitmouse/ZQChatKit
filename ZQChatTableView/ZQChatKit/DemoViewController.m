@@ -55,6 +55,19 @@
     photoFrame.showTime = YES;
     [self.dataSource addObject:photoFrame];
     
+    ZQMessage *voiceMessage = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:@"21" sender:@"voice" timestamp:[NSDate date] isRead:YES];
+    ZQMessageFrame *voiceFrame = [[ZQMessageFrame alloc] init];
+    voiceFrame.message = voiceMessage;
+    voiceFrame.shouldShowUserName = YES;
+    voiceFrame.showTime = YES;
+    [self.dataSource addObject:voiceFrame];
+    
+    ZQMessage *voiceMessage1 = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:@"11" sender:@"voice1" timestamp:[NSDate date] isRead:NO];
+    voiceMessage1.bubbleMessageType = ZQBubbleMessageTypeReceive;
+    ZQMessageFrame *voiceFrame1 = [[ZQMessageFrame alloc] init];
+    voiceFrame1.message = voiceMessage1;
+    [self.dataSource addObject:voiceFrame1];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self scrollToBottomAnimated:NO];
     });
@@ -92,6 +105,16 @@
     messageFrame.showTime = YES;
     messageFrame.shouldShowUserName = YES;
     [self.dataSource addObject:messageFrame];
+    [self reloadChatView];
+}
+
+- (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSInteger )voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date {
+    ZQMessage *voiceMessage = [[ZQMessage alloc] initWithVoicePath:voicePath UserId:@"voice" voiceUrl:@"" voiceDuration:voiceDuration sender:sender timestamp:[NSDate date] isRead:YES];
+    ZQMessageFrame *voiceFrame = [[ZQMessageFrame alloc] init];
+    voiceFrame.message = voiceMessage;
+    voiceFrame.shouldShowUserName = YES;
+    voiceFrame.showTime = YES;
+    [self.dataSource addObject:voiceFrame];
     [self reloadChatView];
 }
 

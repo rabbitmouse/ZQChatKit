@@ -77,7 +77,7 @@
 - (instancetype)initWithVoicePath:(NSString *)voicePath
                            UserId:(NSString *)userId
                          voiceUrl:(NSString *)voiceUrl
-                    voiceDuration:(NSString *)voiceDuration
+                    voiceDuration:(NSInteger )voiceDuration
                            sender:(NSString *)sender
                         timestamp:(NSDate *)timestamp
                            isRead:(BOOL)isRead {
@@ -111,7 +111,6 @@
     
     _voicePath = nil;
     _voiceUrl = nil;
-    _voiceDuration = nil;
     
     _avatar = nil;
     _avatarUrl = nil;
@@ -138,7 +137,6 @@
         
         _voicePath = [aDecoder decodeObjectForKey:@"voicePath"];
         _voiceUrl = [aDecoder decodeObjectForKey:@"voiceUrl"];
-        _voiceDuration = [aDecoder decodeObjectForKey:@"voiceDuration"];
         
         _avatar = [aDecoder decodeObjectForKey:@"avatar"];
         _avatarUrl = [aDecoder decodeObjectForKey:@"avatarUrl"];
@@ -167,7 +165,6 @@
     
     [aCoder encodeObject:self.voicePath forKey:@"voicePath"];
     [aCoder encodeObject:self.voiceUrl forKey:@"voiceUrl"];
-    [aCoder encodeObject:self.voiceDuration forKey:@"voiceDuration"];
     
     [aCoder encodeObject:self.avatar forKey:@"avatar"];
     [aCoder encodeObject:self.avatarUrl forKey:@"avatarUrl"];
@@ -208,7 +205,7 @@
             return [[[self class] allocWithZone:zone] initWithVoicePath:[self.voicePath copy]
                                                                  UserId:[self.userId copy]
                                                                voiceUrl:[self.voiceUrl copy]
-                                                          voiceDuration:[self.voiceDuration copy]
+                                                          voiceDuration:self.voiceDuration
                                                                  sender:[self.sender copy]
                                                               timestamp:[self.timestamp copy]
                                                                  isRead:self.isRead];

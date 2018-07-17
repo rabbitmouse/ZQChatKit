@@ -64,7 +64,7 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
  *  @param sender           发送者的名字
  *  @param date             发送时间
  */
-- (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSString*)voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date;
+- (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSInteger )voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date;
 
 /**
  *  判断是否支持下拉加载更多消息
