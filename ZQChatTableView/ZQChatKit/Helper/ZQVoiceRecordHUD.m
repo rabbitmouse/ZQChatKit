@@ -54,7 +54,7 @@
 - (void)pauseRecord {
     [self configRecoding:NO];
     self.remindLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.000 blue:0.000 alpha:0.630];
-    self.remindLabel.text = @"录音暂停";
+    self.remindLabel.text = @"松开放弃发送";
 }
 
 - (void)resaueRecord {

@@ -80,7 +80,7 @@
     [self configureVoiceDurationLabelFrameWithBubbleFrame:bubbleFrame];
 }
 
-
+#pragma mark - config UI
 - (void)configureVoiceDurationLabelFrameWithBubbleFrame:(CGRect)bubbleFrame {
     CGRect voiceFrame = _voiceDurationLabel.frame;
     voiceFrame.origin.x = (self.message.bubbleMessageType == ZQBubbleMessageTypeSend ? CGRectGetMinX(_animationVoiceImageView.frame) - CGRectGetWidth(voiceFrame) - 2 : CGRectGetMaxX(_animationVoiceImageView.frame) + 2);
@@ -94,6 +94,26 @@
     _voiceUnreadDotImageView.frame = voiceUnreadDotFrame;
 }
 
+- (void)hiddenContentViews {
+    switch (self.message.messageMediaType) {
+        case ZQBubbleMessageMediaTypePhoto:
+            self.backImageView.hidden = NO;
+            self.animationVoiceImageView.hidden = YES;
+            self.voiceDurationLabel.hidden = YES;
+            self.videoPlayImageView.hidden = YES;
+            break;
+        case ZQBubbleMessageMediaTypeVoice:
+            self.backImageView.hidden = YES;
+            self.animationVoiceImageView.hidden = NO;
+            self.voiceDurationLabel.hidden = NO;
+            self.videoPlayImageView.hidden = NO;
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - setter
 - (void)setMessage:(ZQMessage *)message {
     _message = message;
     
@@ -134,24 +154,5 @@
     }
 }
 
-- (void)hiddenContentViews {
-    switch (self.message.messageMediaType) {
-        case ZQBubbleMessageMediaTypePhoto:
-            self.backImageView.hidden = NO;
-            self.animationVoiceImageView.hidden = YES;
-            self.voiceDurationLabel.hidden = YES;
-            self.videoPlayImageView.hidden = YES;
-            break;
-        case ZQBubbleMessageMediaTypeVoice:
-            self.backImageView.hidden = YES;
-            self.animationVoiceImageView.hidden = NO;
-            self.voiceDurationLabel.hidden = NO;
-            self.videoPlayImageView.hidden = NO;
-            break;
-        default:
-            break;
-    }
-    
-}
 
 @end

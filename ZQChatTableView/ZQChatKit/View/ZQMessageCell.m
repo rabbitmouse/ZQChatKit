@@ -214,7 +214,13 @@
             self.messageFrame.message.isRead = YES;
             //voice
             NSError *err = nil;
-            NSData *audioData = [NSData dataWithContentsOfFile:self.messageFrame.message.voicePath options:0 error:&err];
+            NSData *audioData = nil;
+            if (self.messageFrame.message.voicePath) {
+                audioData = [NSData dataWithContentsOfFile:self.messageFrame.message.voicePath options:0 error:&err];
+            } else {
+                audioData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.messageFrame.message.voiceUrl]];
+            }
+            
             [[ZQAudioPlayer sharedInstance] playSongWithData:audioData];
         }
     }
