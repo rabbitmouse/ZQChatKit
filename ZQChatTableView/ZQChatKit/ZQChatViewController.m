@@ -13,6 +13,7 @@
 #import "ZQChatMenuView.h"
 #import "ZQVoiceRecordHUD.h"
 #import "ZQRecordHelper.h"
+#import "ZQAudioPlayer.h"
 
 #import <Masonry/Masonry.h>
 
@@ -42,8 +43,9 @@ ZQChatMenuViewDelegate>
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolHeightLayout;
 
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+@property (nonatomic, weak) ZQMessageCell *selectedTableCell;
 
-@property (nonatomic, assign, readwrite) ZQChatInputViewType inputViewType;
+@property (nonatomic, assign) ZQChatInputViewType inputViewType;
 
 /**
  *  记录旧的textView contentSize Heigth
@@ -213,26 +215,6 @@ ZQChatMenuViewDelegate>
     } else {
         return textView.contentSize.height;
     }
-}
-
-#pragma mark - Scroll Message TableView Helper Method
-
-- (void)setTableViewInsetsWithBottomValue:(CGFloat)bottom {
-    UIEdgeInsets insets = [self tableViewInsetsWithBottomValue:bottom];
-    self.tableview.contentInset = insets;
-    self.tableview.scrollIndicatorInsets = insets;
-}
-
-- (UIEdgeInsets)tableViewInsetsWithBottomValue:(CGFloat)bottom {
-    UIEdgeInsets insets = UIEdgeInsetsZero;
-    
-    if ([self respondsToSelector:@selector(topLayoutGuide)]) {
-        insets.top = self.topLayoutGuide.length;
-    }
-    
-    insets.bottom = bottom;
-    
-    return insets;
 }
 
 #pragma mark - Layout Message Input View Helper Method
@@ -480,7 +462,24 @@ ZQChatMenuViewDelegate>
 
 - (void)chatCell:(ZQMessageCell *)cell contentButtonClick:(NSString *)userId {
     [self.textMessageView.inputView resignFirstResponder];
-    NSLog(@"点击了内容");
+    NSLog(@"点击了图片内容");
+}
+
+- (void)chatCell:(ZQMessageCell *)cell voiceButtonClick:(NSString *)userId {
+    if (!self.selectedTableCell) {
+        self.selectedTableCell = cell;
+    } else if (self.selectedTableCell && self.selectedTableCell == cell) {
+        [[ZQAudioPlayer sharedInstance] stopSound];
+        [self.selectedTableCell.btnContent.animationVoiceImageView stopAnimating];
+        self.selectedTableCell = nil;
+    } else if (self.selectedTableCell && self.selectedTableCell != cell) {
+        [self.selectedTableCell.btnContent.animationVoiceImageView stopAnimating];
+        self.selectedTableCell = cell;
+    }
+}
+
+- (void)chatCell:(ZQMessageCell *)cell voiceDidFinish:(NSString *)userId {
+    self.selectedTableCell = nil;
 }
 
 #pragma mark - ZQChatMenuViewDelegate

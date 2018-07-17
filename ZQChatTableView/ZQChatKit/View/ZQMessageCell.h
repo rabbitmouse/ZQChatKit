@@ -16,6 +16,8 @@
 @optional
 - (void)chatCell:(ZQMessageCell *)cell headImageDidClick:(NSString *)userId;
 - (void)chatCell:(ZQMessageCell *)cell contentButtonClick:(NSString *)userId;
+- (void)chatCell:(ZQMessageCell *)cell voiceButtonClick:(NSString *)userId;
+- (void)chatCell:(ZQMessageCell *)cell voiceDidFinish:(NSString *)userId;
 @end
 
 @interface ZQMessageCell : UITableViewCell
@@ -23,7 +25,7 @@
 @property (nonatomic, strong) ZQMessageFrame *messageFrame;
 @property (nonatomic, weak) id<ZQMessageCellDelegate> delegate;
 
-
+@property (nonatomic, strong) ZQMessageContentView *btnContent;
 /**
  发送方文字颜色
  */

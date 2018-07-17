@@ -23,8 +23,6 @@
 @property (nonatomic, strong) UILabel *namelabel;
 @property (nonatomic, strong) UIButton *headImageButton;
 
-@property (nonatomic, strong) ZQMessageContentView *btnContent;
-
 @end
 
 @implementation ZQMessageCell
@@ -170,8 +168,9 @@
 }
 
 - (void)btnContentClick{
+    ZQMessage *message = self.messageFrame.message;
     //play audio
-    if (self.messageFrame.message.messageMediaType == ZQBubbleMessageMediaTypeVideo) {
+    if (message.messageMediaType == ZQBubbleMessageMediaTypeVideo) {
 //        if(!_contentVoiceIsPlaying){
 //            [[NSNotificationCenter defaultCenter] postNotificationName:@"VoicePlayHasInterrupt" object:nil];
 //            _contentVoiceIsPlaying = YES;
@@ -184,11 +183,11 @@
 //        }
     }
     //show the picture
-    else if (self.messageFrame.message.messageMediaType == ZQBubbleMessageMediaTypePhoto)
+    else if (message.messageMediaType == ZQBubbleMessageMediaTypePhoto)
     {
         if (self.btnContent.backImageView) {
             if (self.delegate && [self.delegate respondsToSelector:@selector(chatCell:contentButtonClick:)]) {
-                [self.delegate chatCell:self contentButtonClick:self.messageFrame.message.userId];
+                [self.delegate chatCell:self contentButtonClick:message.userId];
             }
             [ZQImageBrowser showImage:self.btnContent.backImageView];
         }
@@ -197,7 +196,7 @@
         }
     }
     // show text and gonna copy that
-    else if (self.messageFrame.message.messageMediaType == ZQBubbleMessageMediaTypeText)
+    else if (message.messageMediaType == ZQBubbleMessageMediaTypeText)
     {
         [self.btnContent becomeFirstResponder];
         UIMenuController *menu = [UIMenuController sharedMenuController];
@@ -205,24 +204,28 @@
         [menu setMenuVisible:YES animated:YES];
     }
     // show voice
-    else if (self.messageFrame.message.messageMediaType == ZQBubbleMessageMediaTypeVoice) {
-        if (self.messageFrame.message.voicePath || self.messageFrame.message.voiceUrl) {
+    else if (message.messageMediaType == ZQBubbleMessageMediaTypeVoice) {
+        if (message.voicePath || message.voiceUrl) {
             //animation
             [self.btnContent.animationVoiceImageView startAnimating];
-            [self.btnContent.animationVoiceImageView performSelector:@selector(stopAnimating) withObject:nil afterDelay:self.messageFrame.message.voiceDuration];
+//            [self.btnContent.animationVoiceImageView performSelector:@selector(stopAnimating) withObject:nil afterDelay:message.voiceDuration];
             //info
             self.btnContent.voiceUnreadDotImageView.hidden = YES;
-            self.messageFrame.message.isRead = YES;
+            message.isRead = YES;
             //voice
             NSError *err = nil;
             NSData *audioData = nil;
-            if (self.messageFrame.message.voicePath) {
+            if (message.voicePath) {
                 audioData = [NSData dataWithContentsOfFile:self.messageFrame.message.voicePath options:0 error:&err];
             } else {
-                audioData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.messageFrame.message.voiceUrl]];
+                audioData = [NSData dataWithContentsOfURL:[NSURL URLWithString:message.voiceUrl]];
             }
-            
             [[ZQAudioPlayer sharedInstance] playSongWithData:audioData];
+            [ZQAudioPlayer sharedInstance].delegate = self;
+            
+            if (self.delegate && [self.delegate respondsToSelector:@selector(chatCell:voiceButtonClick:)]) {
+                [self.delegate chatCell:self voiceButtonClick:self.messageFrame.message.userId];
+            }
         }
     }
 }
@@ -230,17 +233,18 @@
 #pragma mark - ZQAudioPlayerDelegate
 
 - (void)ZQAudioPlayerBeiginLoadVoice {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(chatCell:contentButtonClick:)]) {
-        [self.delegate chatCell:self contentButtonClick:self.messageFrame.message.userId];
-    }
+    
 }
 
 - (void)ZQAudioPlayerBeiginPlay {
-    //
+    
 }
 
 - (void)ZQAudioPlayerDidFinishPlay {
     [self.btnContent.animationVoiceImageView stopAnimating];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(chatCell:voiceDidFinish:)]) {
+        [self.delegate chatCell:self voiceDidFinish:self.messageFrame.message.userId];
+    }
 }
 
 @end
