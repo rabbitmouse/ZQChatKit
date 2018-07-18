@@ -16,6 +16,12 @@
 #import "UIImageView+WebCache.h"
 #import "UIImageView+ZQChat.h"
 
+@interface ZQMessageContentView() {
+    UIActivityIndicatorView *_indicator;
+}
+
+@end
+
 @implementation ZQMessageContentView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -29,6 +35,10 @@
             self.backImageView.layer.masksToBounds  = YES;
             self.backImageView.contentMode = UIViewContentModeScaleAspectFill;
             [self addSubview:self.backImageView];
+            
+            UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            [self.backImageView addSubview:indicator];
+            _indicator = indicator;
         }
         
         if (!self.voiceDurationLabel) {
@@ -65,6 +75,7 @@
     [super layoutSubviews];
     // 配置图片
     self.backImageView.frame = self.bounds;
+    _indicator.center = self.backImageView.center;
     
     // 配置语音播放的位置
     CGRect bubbleFrame = self.bounds;
@@ -138,9 +149,15 @@
             if (message.photo) {
                 self.backImageView.image = message.photo;
             } else if (message.thumbnailUrl) {
-                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:message.thumbnailUrl] placeholderImage:defualtPhoto];
+                [_indicator startAnimating];
+                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:message.thumbnailUrl] placeholderImage:defualtPhoto completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    [_indicator stopAnimating];
+                }];
             } else if (message.originPhotoUrl) {
-                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:message.originPhotoUrl] placeholderImage:defualtPhoto];
+                [_indicator startAnimating];
+                [self.backImageView sd_setImageWithURL:[NSURL URLWithString:message.originPhotoUrl] placeholderImage:defualtPhoto completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                    [_indicator stopAnimating];
+                }];
             } else {
                 self.backImageView.image = defualtPhoto;
             }

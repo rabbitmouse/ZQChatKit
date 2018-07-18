@@ -174,11 +174,11 @@ ZQChatMenuViewDelegate>
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataSource.count;
+    return self.chatModel.dataSource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZQMessageFrame *frame = self.dataSource[indexPath.row];
+    ZQMessageFrame *frame = self.chatModel.dataSource[indexPath.row];
     return frame.cellHeight;
 }
 
@@ -192,7 +192,7 @@ ZQChatMenuViewDelegate>
     cell.reciveAvatarImage = self.reciveAvatarImage;
     cell.delegate = self;
     
-    cell.messageFrame = self.dataSource[indexPath.row];
+    cell.messageFrame = self.chatModel.dataSource[indexPath.row];
     return cell;
 }
 
@@ -361,7 +361,7 @@ ZQChatMenuViewDelegate>
     self.textMessageView.inputTextView.text = @"";
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSendText:fromSender:onDate:)]) {
-        [self.delegate didSendText:text fromSender:@"sender" onDate:[NSDate date]];
+        [self.delegate didSendText:text fromSender:self.chatModel.senderName onDate:[NSDate date]];
     }
 }
 
@@ -430,7 +430,7 @@ ZQChatMenuViewDelegate>
     }];
     [self.voiceRecordHelper stopRecordingWithStopRecorderCompletion:^{
         if ([weakSelf.delegate respondsToSelector:@selector(didSendVoice:voiceDuration:fromSender:onDate:)]) {
-            [weakSelf.delegate didSendVoice:weakSelf.recordHelper.recordPath voiceDuration:weakSelf.recordHelper.recordDuration.intValue fromSender:@"sender" onDate:[NSDate date]];
+            [weakSelf.delegate didSendVoice:weakSelf.recordHelper.recordPath voiceDuration:weakSelf.recordHelper.recordDuration.intValue fromSender:self.chatModel.senderName onDate:[NSDate date]];
         }
     }];
 }
@@ -466,12 +466,15 @@ ZQChatMenuViewDelegate>
 }
 
 - (void)chatCell:(ZQMessageCell *)cell voiceButtonClick:(NSString *)userId {
+    //没有选中其他cell
     if (!self.selectedTableCell) {
         self.selectedTableCell = cell;
+    //没有播放完，选中了同一个cell
     } else if (self.selectedTableCell && self.selectedTableCell == cell) {
         [[ZQAudioPlayer sharedInstance] stopSound];
         [self.selectedTableCell.btnContent.animationVoiceImageView stopAnimating];
         self.selectedTableCell = nil;
+    //没有播放完，选中了其他cell
     } else if (self.selectedTableCell && self.selectedTableCell != cell) {
         [self.selectedTableCell.btnContent.animationVoiceImageView stopAnimating];
         self.selectedTableCell = cell;
@@ -514,7 +517,7 @@ ZQChatMenuViewDelegate>
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSendPhoto:fromSender:onDate:)]) {
-        [self.delegate didSendPhoto:image fromSender:@"self" onDate:[NSDate date]];
+        [self.delegate didSendPhoto:image fromSender:self.chatModel.senderName onDate:[NSDate date]];
     }
 }
 

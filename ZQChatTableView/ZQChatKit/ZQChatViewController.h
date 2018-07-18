@@ -10,6 +10,7 @@
 
 #import "ZQChatTableView.h"
 
+#import "ZQChatModel.h"
 #import "ZQMessage.h"
 #import "ZQMessageFrame.h"
 #import "ZQChatDefault.h"
@@ -99,7 +100,8 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
 
 @property (nonatomic, assign, readonly) ZQChatInputViewType inputViewType;
 
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) ZQChatModel *chatModel;
+
 
 /**
  发送方文字颜色

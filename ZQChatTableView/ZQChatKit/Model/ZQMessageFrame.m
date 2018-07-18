@@ -69,7 +69,9 @@
                 CGFloat picWitdh = MIN(ChatPicWH, pWidth);
                 contentSize = CGSizeMake(picWitdh, pHeight/pWidth * picWitdh);
             } else {
-                contentSize = CGSizeMake(ChatPicWH, ChatPicWH);
+                CGFloat pWidth = _message.picWidth == 0 ? ChatPicWH : MIN(ChatPicWH, _message.picWidth);
+                CGFloat pHeight = _message.picHeight == 0 ? ChatPicWH : MIN(ChatPicWH, _message.picHeight);
+                contentSize = CGSizeMake(pWidth, pHeight);
             }
         }
             break;

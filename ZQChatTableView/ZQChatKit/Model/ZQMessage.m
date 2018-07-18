@@ -34,6 +34,7 @@
                        UserId:(NSString *)userId
                  thumbnailUrl:(NSString *)thumbnailUrl
                originPhotoUrl:(NSString *)originPhotoUrl
+                         size:(CGSize)picSize
                        sender:(NSString *)sender
                     timestamp:(NSDate *)timestamp {
     
@@ -43,6 +44,8 @@
         self.userId = userId;
         self.thumbnailUrl = thumbnailUrl;
         self.originPhotoUrl = originPhotoUrl;
+        self.picWidth = picSize.width;
+        self.picHeight = picSize.height;
         
         self.sender = sender;
         self.timestamp = timestamp;
@@ -192,6 +195,7 @@
                                                              UserId:[self.userId copy]
                                                        thumbnailUrl:[self.thumbnailUrl copy]
                                                      originPhotoUrl:[self.originPhotoUrl copy]
+                                                               size:CGSizeMake(self.picWidth, self.picHeight)
                                                              sender:[self.sender copy]
                                                           timestamp:[self.timestamp copy]];
         case ZQBubbleMessageMediaTypeVideo:

@@ -113,11 +113,9 @@
     self.btnContent.frame = messageFrame.contentF;
     
     if (message.bubbleMessageType == ZQBubbleMessageTypeSend) {
-//        self.btnContent.isMyMessage = YES;
         [self.btnContent setTitleColor:self.senderTextColor forState:UIControlStateNormal];
         self.btnContent.titleEdgeInsets = UIEdgeInsetsMake(ChatContentTopBottom, ChatContentSmaller, ChatContentTopBottom, ChatContentBiger);
     } else {
-//        self.btnContent.isMyMessage = NO;
         [self.btnContent setTitleColor:self.reciveTextColor forState:UIControlStateNormal];
         self.btnContent.titleEdgeInsets = UIEdgeInsetsMake(ChatContentTopBottom, ChatContentBiger, ChatContentTopBottom, ChatContentSmaller);
     }

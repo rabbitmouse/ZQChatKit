@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UIImage *photo;
 @property (nonatomic, copy) NSString *thumbnailUrl;
 @property (nonatomic, copy) NSString *originPhotoUrl;
+@property (nonatomic, assign) CGFloat picWidth;
+@property (nonatomic, assign) CGFloat picHeight;
 
 @property (nonatomic, strong) UIImage *videoConverPhoto;
 @property (nonatomic, copy) NSString *videoPath;
@@ -69,6 +71,7 @@
                        UserId:(NSString *)userId
                  thumbnailUrl:(NSString *)thumbnailUrl
                originPhotoUrl:(NSString *)originPhotoUrl
+                         size:(CGSize)picSize
                        sender:(NSString *)sender
                     timestamp:(NSDate *)timestamp;
 
