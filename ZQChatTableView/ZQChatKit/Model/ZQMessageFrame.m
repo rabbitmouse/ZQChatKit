@@ -11,16 +11,6 @@
 #import "ZQChatDefault.h"
 #import "NSString+ZQChat.h"
 
-
-
-/*
- @property (nonatomic, assign, readonly) CGRect timeF;
- @property (nonatomic, assign, readonly) CGRect iconF;
- @property (nonatomic, assign, readonly) CGRect nameF;
- @property (nonatomic, assign, readonly) CGRect contentF;
- 
- @property (nonatomic, assign, readonly) CGFloat cellHeight;
- */
 @implementation ZQMessageFrame
 
 - (void)setMessage:(ZQMessage *)message {
@@ -76,7 +66,11 @@
         }
             break;
         case ZQBubbleMessageMediaTypeVoice: {
-            contentSize = CGSizeMake(ChatPicWH / 2, 30);
+            CGFloat maxWidth = ZQScreenWidth /2 - 60;
+            CGFloat precent = (_message.voiceDuration - 8) / @(60 - 8).floatValue;
+            CGFloat vWidth = _message.voiceDuration < 8 ? 60 : (maxWidth * precent) + 60;
+            
+            contentSize = CGSizeMake(vWidth, 30);
         }
             break;
         default:
