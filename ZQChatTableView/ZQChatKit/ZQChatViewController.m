@@ -457,7 +457,9 @@ ZQChatMenuViewDelegate>
 #pragma mark - ZQMessageCellDelegate
 
 - (void)chatCell:(ZQMessageCell *)cell headImageDidClick:(NSString *)userId {
-    NSLog(@"点击了头像");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedAvatar:)]) {
+        [self.delegate didSelectedAvatar:cell.messageFrame.message];
+    }
 }
 
 - (void)chatCell:(ZQMessageCell *)cell contentButtonClick:(NSString *)userId {

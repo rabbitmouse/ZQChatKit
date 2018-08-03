@@ -215,6 +215,8 @@
 		0C5F863520E5DB9F0073D6E1 /* ZQChatTableView */ = {
 			isa = PBXGroup;
 			children = (
+				0CCB09D320F34F9D00ECD6A6 /* DemoViewController.h */,
+				0CCB09D420F34F9D00ECD6A6 /* DemoViewController.m */,
 				0C5F866820E5DC080073D6E1 /* ZQChatKit */,
 				0C5F863620E5DB9F0073D6E1 /* AppDelegate.h */,
 				0C5F863720E5DB9F0073D6E1 /* AppDelegate.m */,
@@ -250,17 +252,17 @@
 		0C5F866820E5DC080073D6E1 /* ZQChatKit */ = {
 			isa = PBXGroup;
 			children = (
-				0C18D5CA20FC47B000C58023 /* Vender */,
-				0C5F866C20E5DCB20073D6E1 /* ZQChatViewController.h */,
-				0C5F866D20E5DCB20073D6E1 /* ZQChatViewController.m */,
-				0C5F866E20E5DCB20073D6E1 /* ZQChatViewController.xib */,
-				0C5F867B20E602BD0073D6E1 /* ZQChatDefault.h */,
 				0C7820CE20EB4F52001EBC55 /* Helper */,
 				0C5F868420E60B5E0073D6E1 /* View */,
 				0C5F868320E60B4E0073D6E1 /* Model */,
 				0C5F867C20E603DD0073D6E1 /* Category */,
-				0CCB09D320F34F9D00ECD6A6 /* DemoViewController.h */,
-				0CCB09D420F34F9D00ECD6A6 /* DemoViewController.m */,
+				0C18D5CA20FC47B000C58023 /* Vender */,
+				0C5F866C20E5DCB20073D6E1 /* ZQChatViewController.h */,
+				0C5F866D20E5DCB20073D6E1 /* ZQChatViewController.m */,
+				0C5F866E20E5DCB20073D6E1 /* ZQChatViewController.xib */,
+				0C4BDD2C20FED0C9004EB470 /* ZQChatModel.h */,
+				0C4BDD2D20FED0C9004EB470 /* ZQChatModel.m */,
+				0C5F867B20E602BD0073D6E1 /* ZQChatDefault.h */,
 			);
 			path = ZQChatKit;
 			sourceTree = "<group>";
@@ -288,8 +290,6 @@
 				0C5F867A20E5DF210073D6E1 /* ZQMessageEnable.h */,
 				0C5CBD9920F453D9001CDF64 /* ZQMenuItem.h */,
 				0C5CBD9A20F453D9001CDF64 /* ZQMenuItem.m */,
-				0C4BDD2C20FED0C9004EB470 /* ZQChatModel.h */,
-				0C4BDD2D20FED0C9004EB470 /* ZQChatModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

@@ -56,7 +56,7 @@
     photoFrame.showTime = YES;
     [self.dataSource addObject:photoFrame];
     
-    ZQMessage *voiceMessage = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:12 sender:@"voice" timestamp:[NSDate date] isRead:YES];
+    ZQMessage *voiceMessage = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:24 sender:@"voice" timestamp:[NSDate date] isRead:YES];
     ZQMessageFrame *voiceFrame = [[ZQMessageFrame alloc] init];
     voiceFrame.message = voiceMessage;
     voiceFrame.shouldShowUserName = YES;

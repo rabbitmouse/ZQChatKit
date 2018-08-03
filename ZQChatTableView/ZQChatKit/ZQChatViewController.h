@@ -30,6 +30,12 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
 
 @optional
 /**
+ *  点击头像的回调方法
+ *
+ *  @param message 目标用户id
+ */
+- (void)didSelectedAvatar:(ZQMessage *)message;
+/**
  *  发送文本消息的回调方法
  *
  *  @param text   目标文本字符串

@@ -39,6 +39,10 @@
 
 
 #pragma mark - ZQMessageTableViewControllerDelegate
+- (void)didSelectedAvatar:(ZQMessage *)message {
+    NSLog(@"点击了头像");
+}
+
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
     NSLog(@"发送者:%@ , 文字:%@",sender, text);
     ZQMessage *message = [[ZQMessage alloc] initWithText:text UserId:self.chatModel.senderId sender:sender timestamp:date];

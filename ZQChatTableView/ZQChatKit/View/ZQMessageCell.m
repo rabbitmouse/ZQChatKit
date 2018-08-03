@@ -47,6 +47,7 @@
         _headImageBackView.layer.cornerRadius = 22;
         _headImageBackView.layer.masksToBounds = YES;
         _headImageBackView.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.4];
+        _headImageBackView.userInteractionEnabled = YES;
         [self.contentView addSubview:_headImageBackView];
         self.headImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.headImageButton.layer.cornerRadius = 22;
