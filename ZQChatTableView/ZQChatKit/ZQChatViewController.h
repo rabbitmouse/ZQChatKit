@@ -74,6 +74,11 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
 - (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSInteger )voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date;
 
 /**
+ *  失败重发按钮点击
+ */
+- (void)didFailureButton:(ZQLoadingButton *)button Clicked:(ZQMessage *)message;
+
+/**
  *  判断是否支持下拉加载更多消息
  *
  *  @return 返回BOOL值，判定是否拥有这个功能

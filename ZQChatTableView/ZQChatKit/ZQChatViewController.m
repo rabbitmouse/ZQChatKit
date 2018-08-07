@@ -487,6 +487,12 @@ ZQChatMenuViewDelegate>
     self.selectedTableCell = nil;
 }
 
+- (void)chatCell:(ZQMessageCell *)cell failureButton:(ZQLoadingButton *)button Clicked:(NSString *)userId {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didFailureButton:Clicked:)]) {
+        [self.delegate didFailureButton:button Clicked:cell.messageFrame.message];
+    }
+}
+
 #pragma mark - ZQChatMenuViewDelegate
 - (void)MenuViewDidSelectItem:(NSIndexPath *)indexPath {
     if (self.delegate && [self.delegate respondsToSelector:@selector(customMenusDidSelectItem:)]) {

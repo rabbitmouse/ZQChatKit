@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZQMessageContentView.h"
+#import "ZQLoadingButton.h"
 
 @class ZQMessageCell;
 @class ZQMessageFrame;
@@ -18,6 +19,7 @@
 - (void)chatCell:(ZQMessageCell *)cell contentButtonClick:(NSString *)userId;
 - (void)chatCell:(ZQMessageCell *)cell voiceButtonClick:(NSString *)userId;
 - (void)chatCell:(ZQMessageCell *)cell voiceDidFinish:(NSString *)userId;
+- (void)chatCell:(ZQMessageCell *)cell failureButton:(ZQLoadingButton *)button Clicked:(NSString *)userId;
 @end
 
 @interface ZQMessageCell : UITableViewCell

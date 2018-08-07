@@ -13,6 +13,7 @@
 #define ChatIconWH 44       //头像宽高height、width
 #define ChatPicWH 200       //图片宽高
 #define ChatContentW 180    //内容宽度
+#define FailBtnW 24         //失败按钮宽度
 
 #define ChatContentTopBottom 8 //文本内容与按钮上边缘间隔
 #define ChatContentBiger 20         //文本内容带角的一端
@@ -28,6 +29,7 @@
 @property (nonatomic, assign, readonly) CGRect iconF;
 @property (nonatomic, assign, readonly) CGRect nameF;
 @property (nonatomic, assign, readonly) CGRect contentF;
+@property (nonatomic, assign, readonly) CGRect failBtnF;
 
 @property (nonatomic, assign, readonly) CGFloat cellHeight;
 @property (nonatomic, strong) ZQMessage *message;

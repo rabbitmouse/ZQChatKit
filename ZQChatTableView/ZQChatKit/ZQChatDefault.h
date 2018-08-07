@@ -10,6 +10,7 @@
 #define ZQChatDefault_h
 
 #import "ZQConfigStyle.h"
+#import "ZQLoadingButton.h"
 
 #define ZQScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ZQScreenHeight [UIScreen mainScreen].bounds.size.height

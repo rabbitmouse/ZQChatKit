@@ -42,6 +42,7 @@
     [texts enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ZQMessage *message = [[ZQMessage alloc] initWithText:obj UserId:@(idx).stringValue sender:@"用户名" timestamp:[NSDate date]];
         message.bubbleMessageType = idx % 3 ? ZQBubbleMessageTypeSend : ZQBubbleMessageTypeReceive;
+        message.isFailure = (idx % 3);
         ZQMessageFrame *messageFrame = [[ZQMessageFrame alloc] init];
         messageFrame.message = message;
         messageFrame.showTime = YES;

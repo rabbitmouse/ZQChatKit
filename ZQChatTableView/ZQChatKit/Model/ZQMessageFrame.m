@@ -80,6 +80,15 @@
     CGFloat contentX = _message.bubbleMessageType == ZQBubbleMessageTypeReceive ? (iconX + ChatIconWH + ChatMargin) : sWitdh - (contentSize.width + ChatContentSmaller + ChatContentBiger + 2 * ChatMargin + ChatIconWH);
     _contentF = CGRectMake(contentX, MAX(CGRectGetMaxY(_timeF), CGRectGetMaxY(_nameF)) + ChatMargin, contentSize.width + ChatContentBiger + ChatContentSmaller, contentSize.height + ChatContentTopBottom * 2);
     
+    //失败按钮frame
+    CGFloat failX = 0.f;
+    if (_message.bubbleMessageType == ZQBubbleMessageTypeReceive) {
+        failX = CGRectGetMaxX(self.contentF) + ChatMargin;
+    } else {
+        failX = contentX - ChatMargin - FailBtnW;
+    }
+    _failBtnF = CGRectMake(failX, CGRectGetMaxY(_contentF) - FailBtnW, FailBtnW, FailBtnW);
+    
     //计算cellHeight
     _cellHeight = CGRectGetMaxY(_contentF) + CGRectGetMaxY(_timeF)  + ChatMargin;
 }

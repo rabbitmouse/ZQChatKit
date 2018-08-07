@@ -13,6 +13,7 @@
 		0C18D5D420FC4EDE00C58023 /* ZQAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5D320FC4EDE00C58023 /* ZQAudioPlayer.m */; };
 		0C18D5D720FC75A600C58023 /* ZQVoiceRecordHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5D620FC75A600C58023 /* ZQVoiceRecordHUD.m */; };
 		0C18D5DA20FC9CDF00C58023 /* ZQRecordHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5D920FC9CDF00C58023 /* ZQRecordHelper.m */; };
+		0C1C82F72119857C002F891A /* ZQLoadingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1C82F62119857C002F891A /* ZQLoadingButton.m */; };
 		0C22ED3920EDBA7C00CD03CE /* ZQChatMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C22ED3820EDBA7C00CD03CE /* ZQChatMenuView.m */; };
 		0C3E5D6820ECC2A00011DF6F /* ZQTextToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6720ECC2A00011DF6F /* ZQTextToolView.m */; };
 		0C3E5D6A20ECC2CF0011DF6F /* ZQTextToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3E5D6920ECC2CF0011DF6F /* ZQTextToolView.xib */; };
@@ -76,6 +77,8 @@
 		0C18D5D620FC75A600C58023 /* ZQVoiceRecordHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQVoiceRecordHUD.m; sourceTree = "<group>"; };
 		0C18D5D820FC9CDF00C58023 /* ZQRecordHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQRecordHelper.h; sourceTree = "<group>"; };
 		0C18D5D920FC9CDF00C58023 /* ZQRecordHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQRecordHelper.m; sourceTree = "<group>"; };
+		0C1C82F52119857C002F891A /* ZQLoadingButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQLoadingButton.h; sourceTree = "<group>"; };
+		0C1C82F62119857C002F891A /* ZQLoadingButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQLoadingButton.m; sourceTree = "<group>"; };
 		0C22ED3720EDBA7C00CD03CE /* ZQChatMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQChatMenuView.h; sourceTree = "<group>"; };
 		0C22ED3820EDBA7C00CD03CE /* ZQChatMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQChatMenuView.m; sourceTree = "<group>"; };
 		0C3E5D6620ECC2A00011DF6F /* ZQTextToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQTextToolView.h; sourceTree = "<group>"; };
@@ -314,6 +317,8 @@
 				0C5CBD9720F449F5001CDF64 /* ZQMenuCollectionLayout.m */,
 				0CCB09D620F360D000ECD6A6 /* ZQMenuCell.h */,
 				0CCB09D720F360D000ECD6A6 /* ZQMenuCell.m */,
+				0C1C82F52119857C002F891A /* ZQLoadingButton.h */,
+				0C1C82F62119857C002F891A /* ZQLoadingButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C5F867320E5DDA90073D6E1 /* ZQMessageCell.m in Sources */,
+				0C1C82F72119857C002F891A /* ZQLoadingButton.m in Sources */,
 				0C18D5DA20FC9CDF00C58023 /* ZQRecordHelper.m in Sources */,
 				0C7820D120EB4F6E001EBC55 /* ZQImageBrowser.m in Sources */,
 				0C5CBD9820F449F5001CDF64 /* ZQMenuCollectionLayout.m in Sources */,

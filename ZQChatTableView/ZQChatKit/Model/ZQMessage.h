@@ -37,6 +37,7 @@
 
 @property (nonatomic, assign) BOOL sended;
 @property (nonatomic, assign) BOOL isRead;
+@property (nonatomic, assign) BOOL isFailure;
 
 @property (nonatomic, assign) ZQBubbleMessageMediaType messageMediaType;
 

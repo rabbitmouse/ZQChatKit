@@ -77,4 +77,13 @@
     [self reloadChatView];
 }
 
+- (void)didFailureButton:(ZQLoadingButton *)button Clicked:(ZQMessage *)message {
+    [button startAnimation];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [button stopAnitmaion];
+        });
+    });
+}
+
 @end

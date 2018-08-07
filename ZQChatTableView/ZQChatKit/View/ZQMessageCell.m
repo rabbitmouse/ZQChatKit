@@ -22,6 +22,8 @@
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *namelabel;
 @property (nonatomic, strong) UIButton *headImageButton;
+@property (nonatomic, strong) ZQLoadingButton *failureButton;
+
 
 @end
 
@@ -71,7 +73,10 @@
         [self.btnContent addTarget:self action:@selector(btnContentClick)  forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.btnContent];
         
-        
+        // 5、失败按钮
+        self.failureButton = [[ZQLoadingButton alloc] init];
+        [self.failureButton addTarget:self action:@selector(btnFailureClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.failureButton];
     }
     return self;
 }
@@ -154,6 +159,11 @@
         default:
             break;
     }
+    
+    //failure btn
+    self.failureButton.frame = messageFrame.failBtnF;
+    self.failureButton.hidden = !message.isFailure;
+    [self.failureButton isFailure:message.isFailure];
 }
 
 
@@ -226,6 +236,15 @@
                 [self.delegate chatCell:self voiceButtonClick:self.messageFrame.message.userId];
             }
         }
+    }
+}
+
+- (void)btnFailureClicked:(ZQLoadingButton *)button {
+    [button isFailure:NO];
+    ZQMessage *message = self.messageFrame.message;
+    message.isFailure = NO;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(chatCell:failureButton:Clicked:)]) {
+        [self.delegate chatCell:self failureButton:button Clicked:message.userId];
     }
 }
 
