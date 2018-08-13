@@ -35,4 +35,7 @@
  *  显示语音播放的图片控件
  */
 @property (nonatomic, strong) UIImageView *videoPlayImageView;
+
+- (void)loadMeadiaContentBegin;
+- (void)loadMeadiaContentEnd;
 @end

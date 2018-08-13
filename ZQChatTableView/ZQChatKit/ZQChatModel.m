@@ -42,7 +42,7 @@
     [texts enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ZQMessage *message = [[ZQMessage alloc] initWithText:obj UserId:@(idx).stringValue sender:@"用户名" timestamp:[NSDate date]];
         message.bubbleMessageType = idx % 3 ? ZQBubbleMessageTypeSend : ZQBubbleMessageTypeReceive;
-        message.isFailure = (idx % 3);
+        message.isFailure = NO;
         ZQMessageFrame *messageFrame = [[ZQMessageFrame alloc] init];
         messageFrame.message = message;
         messageFrame.showTime = YES;
@@ -50,7 +50,9 @@
         [self.dataSource addObject:messageFrame];
     }];
     
-    ZQMessage *photoMessage = [[ZQMessage alloc] initWithPhoto:nil UserId:@"aaa" thumbnailUrl:nil originPhotoUrl:@"http://mpic.tiankong.com/db1/635/db16351cdb0d0d2d326bb2a4cae5a0b6/640.jpg@!670w" size:CGSizeMake(100, 80) sender:@"发图片" timestamp:[NSDate date]];
+    ZQMessage *photoMessage = [[ZQMessage alloc] initWithPhoto:nil UserId:@"aaa" thumbnailUrl:nil originPhotoUrl:@"http://mpic.tiankong.com/db1/635/db16351cdb0d0d2d326bb2a4cae5a0b6/640.jpg@!670w" size:CGSizeMake(100, 80) sender:@"收图片" timestamp:[NSDate date]];
+    photoMessage.bubbleMessageType = ZQBubbleMessageTypeReceive;
+    photoMessage.isFailure = NO;
     ZQMessageFrame *photoFrame = [[ZQMessageFrame alloc] init];
     photoFrame.message = photoMessage;
     photoFrame.shouldShowUserName = YES;
@@ -58,6 +60,7 @@
     [self.dataSource addObject:photoFrame];
     
     ZQMessage *voiceMessage = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:24 sender:@"voice" timestamp:[NSDate date] isRead:YES];
+    voiceMessage.isFailure = NO;
     ZQMessageFrame *voiceFrame = [[ZQMessageFrame alloc] init];
     voiceFrame.message = voiceMessage;
     voiceFrame.shouldShowUserName = YES;
@@ -65,6 +68,7 @@
     [self.dataSource addObject:voiceFrame];
     
     ZQMessage *voiceMessage1 = [[ZQMessage alloc] initWithVoicePath:@"" UserId:@"voice" voiceUrl:@"" voiceDuration:5 sender:@"voice1" timestamp:[NSDate date] isRead:NO];
+    voiceMessage1.isFailure = NO;
     voiceMessage1.bubbleMessageType = ZQBubbleMessageTypeReceive;
     ZQMessageFrame *voiceFrame1 = [[ZQMessageFrame alloc] init];
     voiceFrame1.message = voiceMessage1;

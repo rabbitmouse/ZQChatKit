@@ -7,6 +7,7 @@
 //
 
 #import "DemoViewController.h"
+#import "ZQMessageCell.h"
 
 @interface DemoViewController ()
 
@@ -53,18 +54,36 @@
     messageFrame.shouldShowUserName = YES;
     [self.chatModel.dataSource addObject:messageFrame];
     [self reloadChatView];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //模拟发送失败
+            message.isFailure = YES;
+            [self.tableview reloadData];
+        });
+    });
 }
 
 - (void)didSendPhoto:(UIImage *)photo fromSender:(NSString *)sender onDate:(NSDate *)date {
     NSLog(@"发送者：%@， 发送的图片", sender);
     ZQMessage *message = [[ZQMessage alloc] initWithPhoto:photo UserId:self.chatModel.senderId thumbnailUrl:nil originPhotoUrl:nil size:photo.size sender:sender timestamp:date];
     message.bubbleMessageType = ZQBubbleMessageTypeSend;
+    message.isUpload = NO;
     ZQMessageFrame *messageFrame = [[ZQMessageFrame alloc] init];
     messageFrame.message = message;
     messageFrame.showTime = YES;
     messageFrame.shouldShowUserName = YES;
     [self.chatModel.dataSource addObject:messageFrame];
     [self reloadChatView];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //模拟发送成功
+            message.isUpload = YES;
+            message.isFailure = YES;
+            [self.tableview reloadData];
+        });
+    });
 }
 
 - (void)didSendVoice:(NSString *)voicePath voiceDuration:(NSInteger )voiceDuration fromSender:(NSString *)sender onDate:(NSDate *)date {
@@ -77,10 +96,14 @@
     [self reloadChatView];
 }
 
+
 - (void)didFailureButton:(ZQLoadingButton *)button Clicked:(ZQMessage *)message {
+    //模拟重新发送
     [button startAnimation];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            message.isFailure = NO;
+//            [button isFailure:message.isFailure]; //若失败 则添加这一句
             [button stopAnitmaion];
         });
     });

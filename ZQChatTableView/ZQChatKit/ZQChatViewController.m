@@ -493,6 +493,12 @@ ZQChatMenuViewDelegate>
     }
 }
 
+- (void)chatCell:(ZQMessageCell *)cell shouldLoadMediaWithMessage:(ZQMessage *)message {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(shouldUploadMediaMessage:WithCell:)]) {
+        [self.delegate shouldUploadMediaMessage:message WithCell:cell];
+    }
+}
+
 #pragma mark - ZQChatMenuViewDelegate
 - (void)MenuViewDidSelectItem:(NSIndexPath *)indexPath {
     if (self.delegate && [self.delegate respondsToSelector:@selector(customMenusDidSelectItem:)]) {

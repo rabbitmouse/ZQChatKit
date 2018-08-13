@@ -151,9 +151,8 @@
             self.btnContent.message = message;
             break;
         case ZQBubbleMessageMediaTypePhoto:
-        case ZQBubbleMessageMediaTypeVoice: {
+        case ZQBubbleMessageMediaTypeVoice:
             self.btnContent.message = message;
-        }
             break;
             
         default:
@@ -265,4 +264,5 @@
     }
 }
 
+#pragma mark - getter && setter
 @end

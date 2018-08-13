@@ -20,6 +20,7 @@
     UIActivityIndicatorView *_indicator;
 }
 
+@property (nonatomic, strong) UIView *maskView;
 @end
 
 @implementation ZQMessageContentView
@@ -35,10 +36,6 @@
             self.backImageView.layer.masksToBounds  = YES;
             self.backImageView.contentMode = UIViewContentModeScaleAspectFill;
             [self addSubview:self.backImageView];
-            
-            UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-            [self.backImageView addSubview:indicator];
-            _indicator = indicator;
         }
         
         if (!self.voiceDurationLabel) {
@@ -67,6 +64,17 @@
             [self addSubview:voiceUnreadDotImageView];
             _voiceUnreadDotImageView = voiceUnreadDotImageView;
         }
+        
+        if (!_maskView) {
+            UIView *maskView = [[UIView alloc] init];
+            maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
+            [self addSubview:maskView];
+            _maskView = maskView;
+            
+            UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+            [maskView addSubview:indicator];
+            _indicator = indicator;
+        }
     }
     return self;
 }
@@ -75,7 +83,9 @@
     [super layoutSubviews];
     // 配置图片
     self.backImageView.frame = self.bounds;
-    _indicator.center = self.backImageView.center;
+    // mask
+    _maskView.frame = self.bounds;
+    _indicator.center = self.maskView.center;
     
     // 配置语音播放的位置
     CGRect bubbleFrame = self.bounds;
@@ -114,6 +124,7 @@
             self.videoPlayImageView.hidden = YES;
             self.animationVoiceImageView.hidden = YES;
             self.voiceUnreadDotImageView.hidden = YES;
+            self.maskView.hidden = YES;
             break;
         case ZQBubbleMessageMediaTypePhoto:
             self.backImageView.hidden = NO;
@@ -122,6 +133,7 @@
             self.videoPlayImageView.hidden = YES;
             self.animationVoiceImageView.hidden = YES;
             self.voiceUnreadDotImageView.hidden = YES;
+            self.maskView.hidden = YES;
             break;
         case ZQBubbleMessageMediaTypeVoice:
             self.backImageView.hidden = YES;
@@ -130,9 +142,24 @@
             self.videoPlayImageView.hidden = NO;
             self.animationVoiceImageView.hidden = NO;
             self.voiceUnreadDotImageView.hidden = self.message.isRead;
+            self.maskView.hidden = YES;
             break;
         default:
             break;
+    }
+}
+
+#pragma mark - public
+- (void)loadMeadiaContentBegin {
+    self.maskView.hidden = NO;
+    if (!_indicator.isAnimating) {
+        [_indicator startAnimating];
+    }
+}
+- (void)loadMeadiaContentEnd {
+    self.maskView.hidden = YES;
+    if (_indicator.isAnimating) {
+        [_indicator stopAnimating];
     }
 }
 
@@ -148,15 +175,22 @@
             UIImage *defualtPhoto = [UIImage imageNamed:@"defualtPhoto"];
             if (message.photo) {
                 self.backImageView.image = message.photo;
+                if (!message.isUpload) {
+                    [self loadMeadiaContentBegin];
+                } else {
+                    [self loadMeadiaContentEnd];
+                }
             } else if (message.thumbnailUrl) {
-                [_indicator startAnimating];
+                [self loadMeadiaContentBegin];
                 [self.backImageView sd_setImageWithURL:[NSURL URLWithString:message.thumbnailUrl] placeholderImage:defualtPhoto completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                    [_indicator stopAnimating];
+                    _message.photo = image;
+                    [self loadMeadiaContentEnd];
                 }];
             } else if (message.originPhotoUrl) {
-                [_indicator startAnimating];
+                [self loadMeadiaContentBegin];
                 [self.backImageView sd_setImageWithURL:[NSURL URLWithString:message.originPhotoUrl] placeholderImage:defualtPhoto completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-                    [_indicator stopAnimating];
+                    _message.photo = image;
+                    [self loadMeadiaContentEnd];
                 }];
             } else {
                 self.backImageView.image = defualtPhoto;
@@ -171,7 +205,7 @@
             [self addSubview:animationVoiceImageView];
             self.animationVoiceImageView = animationVoiceImageView;
             
-            self.voiceDurationLabel.text = [NSString stringWithFormat:@"%ld\'\'", message.voiceDuration];
+            self.voiceDurationLabel.text = [NSString stringWithFormat:@"%ld\'\'", (long)message.voiceDuration];
         }
             break;
             

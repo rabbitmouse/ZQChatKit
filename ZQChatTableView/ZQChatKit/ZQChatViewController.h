@@ -17,6 +17,7 @@
 
 #import "ZQMenuItem.h"
 
+@class ZQMessageCell;
 
 typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
     ZQChatInputViewTypeNormal = 0 << 1,
@@ -99,6 +100,15 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
  *  自定义菜单，接受事件
  */
 - (void)customMenusDidSelectItem:(NSIndexPath *)indexPath;
+
+
+/**
+ *  需要上传媒体资源
+ *
+ * @param message model
+ * @param cell cell
+ */
+- (void)shouldUploadMediaMessage:(ZQMessage *)message WithCell:(ZQMessageCell *)cell;
 
 @end
 

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ZQMessageEnable.h"
 
-@interface ZQMessage : NSObject<ZQMessageEnable, NSCoding, NSCopying>
+@interface ZQMessage : NSObject<ZQMessageEnable>
 
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy) NSString *userId;
@@ -38,6 +38,7 @@
 @property (nonatomic, assign) BOOL sended;
 @property (nonatomic, assign) BOOL isRead;
 @property (nonatomic, assign) BOOL isFailure;
+@property (nonatomic, assign) BOOL isUpload;
 
 @property (nonatomic, assign) ZQBubbleMessageMediaType messageMediaType;
 
