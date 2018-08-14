@@ -55,6 +55,33 @@
 
 #pragma mark - private methods
 
+- (IBAction)panGesture:(UIPanGestureRecognizer *)ges {
+    if (ges.state == UIGestureRecognizerStateEnded) {
+        [self commitTranslation:[ges translationInView:self]];
+    }
+}
+
+- (void)commitTranslation:(CGPoint)translation {
+    
+    CGFloat absX = fabs(translation.x);
+    CGFloat absY = fabs(translation.y);
+    
+    // 设置滑动有效距离
+    if (MAX(absX, absY) < 5)
+        return;
+
+    if (absY > absX) {
+        if (translation.y < 0) {
+            //向上滑动
+        } else {
+            //向下滑动
+            if (self.delegate && [self.delegate respondsToSelector:@selector(viewDidPan)]) {
+                [self.delegate viewDidPan];
+            }
+        }
+    }
+}
+
 #pragma mark - action
 - (IBAction)mediaBtnClicked:(id)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectedMultipleMediaAction)]) {

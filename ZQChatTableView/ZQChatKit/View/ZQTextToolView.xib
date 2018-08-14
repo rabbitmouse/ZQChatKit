@@ -12,11 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="gfZ-Yx-B2j" customClass="ZQTextToolView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LVo-Vr-VWK">
-                    <rect key="frame" x="44" y="5" width="287" height="34"/>
+                    <rect key="frame" x="46" y="5" width="283" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="按住说话">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -29,17 +29,17 @@
                         <action selector="recordButtonUpOutside:" destination="gfZ-Yx-B2j" eventType="touchUpOutside" id="VZ8-dC-NUW"/>
                     </connections>
                 </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-Gd-2OB" customClass="ZQMessageTextView">
-                    <rect key="frame" x="44" y="5" width="287" height="34"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-Gd-2OB" customClass="ZQMessageTextView">
+                    <rect key="frame" x="46" y="7" width="283" height="36"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHd-Pj-V0g">
-                    <rect key="frame" x="336" y="5" width="34" height="34"/>
+                    <rect key="frame" x="334" y="7" width="36" height="36"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="34" id="8bR-Xf-QQv"/>
-                        <constraint firstAttribute="width" constant="34" id="h4T-Ge-asT"/>
+                        <constraint firstAttribute="height" constant="36" id="8bR-Xf-QQv"/>
+                        <constraint firstAttribute="width" constant="36" id="h4T-Ge-asT"/>
                     </constraints>
                     <state key="normal" backgroundImage="Chat_take_picture"/>
                     <connections>
@@ -47,10 +47,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PK5-zg-Wnk">
-                    <rect key="frame" x="5" y="5" width="34" height="34"/>
+                    <rect key="frame" x="5" y="7" width="36" height="36"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="34" id="16B-Gv-RYS"/>
-                        <constraint firstAttribute="height" constant="34" id="W8e-LW-77a"/>
+                        <constraint firstAttribute="width" constant="36" id="16B-Gv-RYS"/>
+                        <constraint firstAttribute="height" constant="36" id="W8e-LW-77a"/>
                     </constraints>
                     <state key="normal" backgroundImage="chat_voice_record"/>
                     <connections>
@@ -59,27 +59,34 @@
                 </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="Saw-Gd-2OB" firstAttribute="top" secondItem="gfZ-Yx-B2j" secondAttribute="top" constant="5" id="0oV-cl-hNe"/>
-                <constraint firstAttribute="bottom" secondItem="Saw-Gd-2OB" secondAttribute="bottom" constant="5" id="0sQ-bf-be9"/>
+                <constraint firstItem="Saw-Gd-2OB" firstAttribute="top" secondItem="gfZ-Yx-B2j" secondAttribute="top" constant="7" id="0oV-cl-hNe"/>
+                <constraint firstAttribute="bottom" secondItem="Saw-Gd-2OB" secondAttribute="bottom" constant="7" id="0sQ-bf-be9"/>
                 <constraint firstItem="eHd-Pj-V0g" firstAttribute="leading" secondItem="LVo-Vr-VWK" secondAttribute="trailing" constant="5" id="5Tr-p2-xyN"/>
+                <constraint firstItem="PK5-zg-Wnk" firstAttribute="bottom" secondItem="Saw-Gd-2OB" secondAttribute="bottom" id="6yK-qm-bT2"/>
                 <constraint firstItem="Saw-Gd-2OB" firstAttribute="leading" secondItem="PK5-zg-Wnk" secondAttribute="trailing" constant="5" id="DPr-1u-405"/>
                 <constraint firstItem="eHd-Pj-V0g" firstAttribute="leading" secondItem="Saw-Gd-2OB" secondAttribute="trailing" constant="5" id="FbA-pl-Aqo"/>
-                <constraint firstAttribute="bottom" secondItem="PK5-zg-Wnk" secondAttribute="bottom" constant="5" id="FnD-a1-JqQ"/>
                 <constraint firstItem="LVo-Vr-VWK" firstAttribute="leading" secondItem="PK5-zg-Wnk" secondAttribute="trailing" constant="5" id="LE5-Zw-S4s"/>
                 <constraint firstAttribute="bottom" secondItem="LVo-Vr-VWK" secondAttribute="bottom" constant="5" id="bdJ-sy-YIU"/>
                 <constraint firstItem="LVo-Vr-VWK" firstAttribute="top" secondItem="gfZ-Yx-B2j" secondAttribute="top" constant="5" id="bhp-Vp-52b"/>
                 <constraint firstAttribute="trailing" secondItem="eHd-Pj-V0g" secondAttribute="trailing" constant="5" id="oMd-om-JKf"/>
                 <constraint firstItem="PK5-zg-Wnk" firstAttribute="leading" secondItem="gfZ-Yx-B2j" secondAttribute="leading" constant="5" id="s3j-KI-1y3"/>
-                <constraint firstAttribute="bottom" secondItem="eHd-Pj-V0g" secondAttribute="bottom" constant="5" id="ufJ-A4-pyd"/>
+                <constraint firstItem="eHd-Pj-V0g" firstAttribute="bottom" secondItem="Saw-Gd-2OB" secondAttribute="bottom" id="uXq-li-qUR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="inputTextView" destination="Saw-Gd-2OB" id="rwN-LT-2wY"/>
                 <outlet property="recordButton" destination="LVo-Vr-VWK" id="Dqk-4M-g0m"/>
+                <outletCollection property="gestureRecognizers" destination="wFm-Je-B9a" appends="YES" id="1LS-gj-qrW"/>
             </connections>
             <point key="canvasLocation" x="56.5" y="-438"/>
         </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="wFm-Je-B9a">
+            <connections>
+                <action selector="panGesture:" destination="gfZ-Yx-B2j" id="B2W-h1-w7E"/>
+            </connections>
+        </panGestureRecognizer>
     </objects>
     <resources>
         <image name="Chat_take_picture" width="72" height="72"/>

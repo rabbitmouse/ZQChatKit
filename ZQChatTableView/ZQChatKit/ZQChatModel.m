@@ -22,6 +22,8 @@
 }
 
 - (void)configModel {
+    self.senderId = @"12344521312321";
+    self.senderName = @"发送者";
     self.dataSource = [NSMutableArray array];
     NSArray *texts = @[@"文字文字",
                        @"文字文字文字文字文字文字文字文字文字文字文字文字文字文字",

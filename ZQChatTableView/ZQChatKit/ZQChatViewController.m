@@ -61,6 +61,10 @@ ZQChatMenuViewDelegate>
 
 @implementation ZQChatViewController
 
+- (void)dealloc {
+    NSLog(@"聊天界面已释放");
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     // 设置键盘通知或者手势控制键盘消失
@@ -97,6 +101,7 @@ ZQChatMenuViewDelegate>
     self.tableview.backgroundColor = self.backViewColor;
 }
 
+#pragma mark - Config UI
 - (void)configUI {
     [self configTableView];
     
@@ -154,10 +159,10 @@ ZQChatMenuViewDelegate>
     if (self.delegate && [self.delegate respondsToSelector:@selector(loadCustomMenus)]) {
         menuView.menus = [self.delegate loadCustomMenus].copy;
     } else {
-        NSArray *titles = @[@"拍照",@"照片",@"位置"];
-        NSArray *icons = @[@"sharemore_video",@"sharemore_pic",@"sharemore_location"];
+        NSArray *titles = @[@"拍照",@"照片"];
+        NSArray *icons = @[@"sharemore_video",@"sharemore_pic"];
         NSMutableArray *menus = [NSMutableArray array];
-        for (int i = 0; i < 3; ++i) {
+        for (int i = 0; i < 2; ++i) {
             ZQMenuItem *item = [ZQMenuItem new];
             item.title = titles[i];
             item.imgName = icons[i];
@@ -186,7 +191,7 @@ ZQChatMenuViewDelegate>
                             options:options
                          animations:^{
                              
-                             if (self.inputViewType != ZQChatInputViewTypeTool) {
+                             if (weakSelf.inputViewType != ZQChatInputViewTypeTool) {
                                  weakSelf.toolBottomLayout.constant = showKeyboard ? keyboardRect.size.height : 0;
                                  
                                  [weakSelf.view layoutIfNeeded];
@@ -281,7 +286,7 @@ ZQChatMenuViewDelegate>
     CGFloat contentH = [self getTextViewContentH:textView];
     
     BOOL isShrinking = contentH < self.previousTextViewContentHeight;
-    CGFloat changeInHeight = contentH - _previousTextViewContentHeight;
+    CGFloat changeInHeight = contentH - self.previousTextViewContentHeight;
     
     if (!isShrinking && (self.previousTextViewContentHeight == maxHeight || contentH <= TextViewDefualtHeight)) {
         changeInHeight = 0;
@@ -448,6 +453,10 @@ ZQChatMenuViewDelegate>
     [self resumeRecord];
 }
 
+- (void)viewDidPan {
+    [self viewDidTap:nil];
+}
+
 #pragma mark - Voice Recording Helper Method
 
 - (void)prepareRecordWithCompletion:(ZQPrepareRecorderCompletion)completion {
@@ -467,7 +476,7 @@ ZQChatMenuViewDelegate>
     }];
     [self.voiceRecordHelper stopRecordingWithStopRecorderCompletion:^{
         if ([weakSelf.delegate respondsToSelector:@selector(didSendVoice:voiceDuration:fromSender:onDate:)]) {
-            [weakSelf.delegate didSendVoice:weakSelf.recordHelper.recordPath voiceDuration:weakSelf.recordHelper.recordDuration.intValue fromSender:self.chatModel.senderName onDate:[NSDate date]];
+            [weakSelf.delegate didSendVoice:weakSelf.recordHelper.recordPath voiceDuration:weakSelf.recordHelper.recordDuration.intValue fromSender:weakSelf.chatModel.senderName onDate:[NSDate date]];
         }
     }];
 }
@@ -527,12 +536,6 @@ ZQChatMenuViewDelegate>
 - (void)chatCell:(ZQMessageCell *)cell failureButton:(ZQLoadingButton *)button Clicked:(NSString *)userId {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didFailureButton:Clicked:)]) {
         [self.delegate didFailureButton:button Clicked:cell.messageFrame.message];
-    }
-}
-
-- (void)chatCell:(ZQMessageCell *)cell shouldLoadMediaWithMessage:(ZQMessage *)message {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(shouldUploadMediaMessage:WithCell:)]) {
-        [self.delegate shouldUploadMediaMessage:message WithCell:cell];
     }
 }
 

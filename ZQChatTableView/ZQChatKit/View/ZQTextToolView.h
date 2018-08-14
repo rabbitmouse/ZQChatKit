@@ -78,6 +78,12 @@
  */
 - (void)didSelectedVoiceMediaAction;
 
+
+/**
+ *  用户滑动了view
+ */
+- (void)viewDidPan;
+
 @end
 
 @interface ZQTextToolView : UIView

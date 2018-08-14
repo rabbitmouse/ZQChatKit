@@ -185,10 +185,10 @@
 		0C18D5CB20FC47B900C58023 /* FLAnimatedImageView */ = {
 			isa = PBXGroup;
 			children = (
-				0C18D5CC20FC47B900C58023 /* FLAnimatedImage.m */,
-				0C18D5CD20FC47B900C58023 /* FLAnimatedImageView.m */,
 				0C18D5CE20FC47B900C58023 /* FLAnimatedImage.h */,
+				0C18D5CC20FC47B900C58023 /* FLAnimatedImage.m */,
 				0C18D5CF20FC47B900C58023 /* FLAnimatedImageView.h */,
+				0C18D5CD20FC47B900C58023 /* FLAnimatedImageView.m */,
 			);
 			path = FLAnimatedImageView;
 			sourceTree = "<group>";

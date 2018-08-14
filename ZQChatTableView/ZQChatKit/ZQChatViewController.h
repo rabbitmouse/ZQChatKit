@@ -101,15 +101,6 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
  */
 - (void)customMenusDidSelectItem:(NSIndexPath *)indexPath;
 
-
-/**
- *  需要上传媒体资源
- *
- * @param message model
- * @param cell cell
- */
-- (void)shouldUploadMediaMessage:(ZQMessage *)message WithCell:(ZQMessageCell *)cell;
-
 @end
 
 
