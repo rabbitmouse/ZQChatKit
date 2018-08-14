@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CCF254DAD6AB46B3E1D18EC90C1F0BD9"
+               BlueprintIdentifier = "F69125785A15C88090229B69D69F5C4F"
                BuildableName = "Pods_ZQChatTableView.framework"
                BlueprintName = "Pods-ZQChatTableView"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CCF254DAD6AB46B3E1D18EC90C1F0BD9"
+            BlueprintIdentifier = "F69125785A15C88090229B69D69F5C4F"
             BuildableName = "Pods_ZQChatTableView.framework"
             BlueprintName = "Pods-ZQChatTableView"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -165,4 +165,7 @@ typedef NS_ENUM(NSUInteger, ZQChatInputViewType) {
 //刷新界面
 - (void)reloadChatView;
 
+//结束下拉刷新
+- (void)headerRefreshEnd;
+
 @end

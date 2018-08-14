@@ -9,6 +9,7 @@ target 'ZQChatTableView' do
 
   pod 'SDWebImage'
   pod 'Masonry'
+  pod 'MJRefresh'
 
   target 'ZQChatTableViewTests' do
     inherit! :search_paths

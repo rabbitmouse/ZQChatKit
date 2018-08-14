@@ -16,6 +16,7 @@
 #import "ZQAudioPlayer.h"
 
 #import <Masonry/Masonry.h>
+#import <MJRefresh/MJRefresh.h>
 
 #import "UIScrollView+ZQkeyboardControl.h"
 
@@ -97,6 +98,20 @@ ZQChatMenuViewDelegate>
 }
 
 - (void)configUI {
+    [self configTableView];
+    
+    [self addRefreshHeader];
+    [self addTextView];
+    [self addMenuView];
+    
+    
+    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidTap:)];
+    [self.tableview addGestureRecognizer:self.tapGesture];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+- (void)configTableView {
     self.delegate = self;
     self.tableview.delegate = self;
     self.tableview.dataSource = self;
@@ -104,7 +119,25 @@ ZQChatMenuViewDelegate>
     self.tableview.estimatedSectionHeaderHeight = 0;
     self.tableview.estimatedSectionFooterHeight = 0;
     [self.tableview registerClass:[ZQMessageCell class] forCellReuseIdentifier:NSStringFromClass([ZQMessageCell class])];
-    
+}
+
+- (void)addRefreshHeader {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(shouldLoadMoreMessagesScrollToTop)]) {
+        if ([self.delegate shouldLoadMoreMessagesScrollToTop]) {
+            WEAKSELF
+            MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(loadMoreMessagesScrollTotop)]) {
+                    [weakSelf.delegate loadMoreMessagesScrollTotop];
+                }
+            }];
+            header.lastUpdatedTimeLabel.hidden = YES;
+            header.stateLabel.hidden = YES;
+            self.tableview.mj_header = header;
+        }
+    }
+}
+
+- (void)addTextView {
     ZQTextToolView *textView = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ZQTextToolView class]) owner:nil options:nil].firstObject;
     textView.recordButton.alpha = 0;
     textView.delegate = self;
@@ -113,7 +146,9 @@ ZQChatMenuViewDelegate>
         make.top.left.bottom.right.equalTo(self.bottomToolView);
     }];
     self.textMessageView = textView;
-    
+}
+
+- (void)addMenuView {
     ZQChatMenuView *menuView = [ZQChatMenuView new];
     menuView.delegate = self;
     if (self.delegate && [self.delegate respondsToSelector:@selector(loadCustomMenus)]) {
@@ -139,12 +174,9 @@ ZQChatMenuViewDelegate>
     }];
     self.menuView = menuView;
     
-    self.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewDidTap:)];
-    [self.tableview addGestureRecognizer:self.tapGesture];
-    
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.inputViewType = ZQChatInputViewTypeNormal;
 }
+
 
 - (void)addKeyboardAction {
     WEAKSELF
@@ -196,6 +228,29 @@ ZQChatMenuViewDelegate>
     return cell;
 }
 
+#pragma mark - public methods
+- (void)reloadChatView {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableview reloadData];
+        [self scrollToBottomAnimated:YES];
+    });
+}
+
+- (void)headerRefreshEnd {
+    [self.tableview.mj_header endRefreshing];
+}
+
+- (void)scrollToBottomAnimated:(BOOL)animated {
+    
+    NSInteger rows = [self.tableview numberOfRowsInSection:0];
+    
+    if (rows > 0) {
+        [self.tableview scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rows - 1 inSection:0]
+                              atScrollPosition:UITableViewScrollPositionBottom
+                                      animated:animated];
+    }
+}
+
 #pragma mark - Key-value Observing
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -218,24 +273,6 @@ ZQChatMenuViewDelegate>
 }
 
 #pragma mark - Layout Message Input View Helper Method
-
-- (void)reloadChatView {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableview reloadData];
-        [self scrollToBottomAnimated:YES];
-    });
-}
-
-- (void)scrollToBottomAnimated:(BOOL)animated {
-    
-    NSInteger rows = [self.tableview numberOfRowsInSection:0];
-    
-    if (rows > 0) {
-        [self.tableview scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rows - 1 inSection:0]
-                                     atScrollPosition:UITableViewScrollPositionBottom
-                                             animated:animated];
-    }
-}
 
 - (void)layoutAndAnimateMessageInputTextView:(UITextView *)textView {
     

@@ -18,6 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        
+        self.extendedLayoutIncludesOpaqueBars = NO;
+        self.modalPresentationCapturesStatusBarAppearance = NO;
+    }
     [self configModel];
 }
 
@@ -45,7 +51,7 @@
 }
 
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
-    NSLog(@"发送者:%@ , 文字:%@",sender, text);
+    NSLog(@"发送者:%@ , 新的:%@",sender, text);
     ZQMessage *message = [[ZQMessage alloc] initWithText:text UserId:self.chatModel.senderId sender:sender timestamp:date];
     message.bubbleMessageType = ZQBubbleMessageTypeSend;
     ZQMessageFrame *messageFrame = [[ZQMessageFrame alloc] init];
@@ -81,6 +87,7 @@
             //模拟发送成功
             message.isUpload = YES;
             message.isFailure = YES;
+            message.originPhotoUrl = @"将URL保存到内存和数据库";
             [self.tableview reloadData];
         });
     });
@@ -107,6 +114,44 @@
             [button stopAnitmaion];
         });
     });
+}
+
+- (BOOL)shouldLoadMoreMessagesScrollToTop {
+    return YES;
+}
+
+- (void)loadMoreMessagesScrollTotop {
+    NSArray *texts = @[@"新的新的",
+                       @"新的新的新的新的新的新的新的新的新的新的新的新的新的新的",
+                       @"新的新的新的新的新的新的新的新的新的新的新的新的新的新的",
+                       @"文新的新的新的新的新的新的新的新的新的新的新的新的新的新的字新的",
+                       @"新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的",
+                       @"新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的",
+                       @"新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的",
+                       @"文新的新的文新的",
+                       @"新的文新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的字",
+                       @"新的文新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的字",
+                       @"新的文新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的新的字"];
+    
+    NSMutableArray *datas = [NSMutableArray array];
+    [texts enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        ZQMessage *message = [[ZQMessage alloc] initWithText:obj UserId:@(idx).stringValue sender:@"用户名" timestamp:[NSDate date]];
+        message.bubbleMessageType = idx % 3 ? ZQBubbleMessageTypeSend : ZQBubbleMessageTypeReceive;
+        message.isFailure = NO;
+        ZQMessageFrame *messageFrame = [[ZQMessageFrame alloc] init];
+        messageFrame.message = message;
+        messageFrame.showTime = YES;
+        messageFrame.shouldShowUserName = YES;
+        [datas addObject:messageFrame];
+    }];
+    
+    NSMutableIndexSet *indexes = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, datas.count)];
+    [self.chatModel.dataSource insertObjects:datas atIndexes:indexes];
+    [self headerRefreshEnd];
+    [self.tableview reloadData];
+    NSIndexPath *index = [NSIndexPath indexPathForRow:datas.count inSection:0];
+    [self.tableview scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    
 }
 
 @end
