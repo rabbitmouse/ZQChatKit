@@ -38,12 +38,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="8uW-Xy-g3E" firstAttribute="top" secondItem="i73-Qs-xj8" secondAttribute="bottom" id="4qj-vn-cFy"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="8uW-Xy-g3E" secondAttribute="bottom" id="Qp9-lW-Ybb"/>
+                <constraint firstItem="i73-Qs-xj8" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="VPe-Iu-CpO"/>
                 <constraint firstItem="8uW-Xy-g3E" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Xb9-SF-Hpy"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="8uW-Xy-g3E" secondAttribute="trailing" id="ZP1-dE-QIi"/>
                 <constraint firstItem="i73-Qs-xj8" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="fex-xI-YuY"/>
                 <constraint firstItem="i73-Qs-xj8" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="iTJ-S8-lgI"/>
-                <constraint firstItem="8uW-Xy-g3E" firstAttribute="top" secondItem="i73-Qs-xj8" secondAttribute="bottom" id="jxK-BO-Vkh"/>
                 <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="i73-Qs-xj8" secondAttribute="trailing" id="oai-UZ-1dI"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>

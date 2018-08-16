@@ -85,6 +85,10 @@
     [super prepareForReuse];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
+
 - (void)setMessageFrame:(ZQMessageFrame *)messageFrame {
     //——————————————————get data——————————————
     _messageFrame = messageFrame;

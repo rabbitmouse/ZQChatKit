@@ -64,6 +64,7 @@ static NSString *cellIdentify = @"ZQMenuCell";
 
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     self.collectionView.frame = self.bounds;
     _lineView.frame = CGRectMake(0, 0, self.bounds.size.width, 1);
 }

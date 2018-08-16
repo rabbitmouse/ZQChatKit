@@ -98,6 +98,7 @@ ZQChatMenuViewDelegate>
 }
 
 - (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     self.tableview.backgroundColor = self.backViewColor;
 }
 
@@ -186,6 +187,7 @@ ZQChatMenuViewDelegate>
 - (void)addKeyboardAction {
     WEAKSELF
     self.tableview.keyboardWillChange = ^(CGRect keyboardRect, UIViewAnimationOptions options, double duration, BOOL showKeyboard) {
+        [weakSelf.view layoutIfNeeded];
         [UIView animateWithDuration:duration
                               delay:0.0
                             options:options
@@ -195,7 +197,7 @@ ZQChatMenuViewDelegate>
                                  weakSelf.toolBottomLayout.constant = showKeyboard ? keyboardRect.size.height : 0;
                                  
                                  [weakSelf.view layoutIfNeeded];
-                                 
+
                                  if (showKeyboard) {
                                      [weakSelf scrollToBottomAnimated:NO];
                                  }
@@ -220,7 +222,7 @@ ZQChatMenuViewDelegate>
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ZQMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZQMessageCell class])];
+    ZQMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ZQMessageCell class]) forIndexPath:indexPath];
     cell.senderTextColor = self.senderTextColor;
     cell.reciveTextColor = self.reciveTextColor;
     cell.senderBubbleImage = self.senderBubbleImage;
@@ -232,6 +234,13 @@ ZQChatMenuViewDelegate>
     cell.messageFrame = self.chatModel.dataSource[indexPath.row];
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [UIView performWithoutAnimation:^{
+//        [cell layoutIfNeeded];
+//    }];
+//}
 
 #pragma mark - public methods
 - (void)reloadChatView {
@@ -296,6 +305,7 @@ ZQChatMenuViewDelegate>
     }
     
     if (changeInHeight != 0.0f) {
+        [self.view layoutIfNeeded];
         [UIView animateWithDuration:0.25f
                          animations:^{
                              [self scrollToBottomAnimated:NO];
@@ -318,6 +328,7 @@ ZQChatMenuViewDelegate>
     
     if (nHide) {
         // hide
+        [self.view layoutIfNeeded];
         [UIView animateWithDuration:0.25f animations:^{
             self.menuView.alpha = 0;
             if (self.inputViewType == ZQChatInputViewTypeNormal) {
@@ -327,6 +338,7 @@ ZQChatMenuViewDelegate>
         } completion:nil];
     } else {
         // show
+        [self.view layoutIfNeeded];
         [UIView animateWithDuration:0.25f animations:^{
             self.menuView.alpha = 1;
             self.toolBottomLayout.constant = CGRectGetHeight(self.menuView.frame);
@@ -346,6 +358,7 @@ ZQChatMenuViewDelegate>
         [self.textMessageView.inputTextView resignFirstResponder];
         [self menuViewNeedHide:YES];
         
+        [self.view layoutIfNeeded];
         [UIView animateWithDuration:0.25 animations:^{
             self.textMessageView.inputTextView.alpha = 0;
             self.textMessageView.recordButton.alpha = 1;
@@ -353,6 +366,7 @@ ZQChatMenuViewDelegate>
             [self.view layoutIfNeeded];
         }];
     } else {
+        [self.view layoutIfNeeded];
         [UIView animateWithDuration:0.25 animations:^{
             self.textMessageView.inputTextView.alpha = 1;
             self.textMessageView.recordButton.alpha = 0;

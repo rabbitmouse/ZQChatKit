@@ -45,6 +45,8 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
+    
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
     
