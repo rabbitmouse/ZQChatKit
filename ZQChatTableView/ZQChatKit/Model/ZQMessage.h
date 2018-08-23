@@ -35,9 +35,23 @@
 
 @property (nonatomic, strong) NSDate *timestamp;
 
-@property (nonatomic, assign) BOOL sended;
+/**
+ * 只能用于语音
+ * 若设置为NO，显示未读红点
+ * 若设置为YES，隐藏未读红点
+ */
 @property (nonatomic, assign) BOOL isRead;
+
+/**
+ * default is NO
+ * 如果设置为YES，将显示发送失败按钮
+ */
 @property (nonatomic, assign) BOOL isFailure;
+
+/**
+ * default is YES
+ * 如果设置为NO，将显示maskview和loading菊花
+ */
 @property (nonatomic, assign) BOOL isUpload;
 
 @property (nonatomic, assign) ZQBubbleMessageMediaType messageMediaType;

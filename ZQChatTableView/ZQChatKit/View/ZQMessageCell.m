@@ -15,6 +15,7 @@
 #import "NSString+ZQChat.h"
 #import "UIImageView+WebCache.h"
 
+
 @interface ZQMessageCell() <ZQAudioPlayerDelegate> {
     UIImageView *_headImageBackView;
 }
@@ -156,6 +157,7 @@
             break;
         case ZQBubbleMessageMediaTypePhoto:
         case ZQBubbleMessageMediaTypeVoice:
+        case ZQBubbleMessageMediaTypeVideo:
             self.btnContent.message = message;
             break;
             
@@ -183,16 +185,9 @@
     ZQMessage *message = self.messageFrame.message;
     //play audio
     if (message.messageMediaType == ZQBubbleMessageMediaTypeVideo) {
-//        if(!_contentVoiceIsPlaying){
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"VoicePlayHasInterrupt" object:nil];
-//            _contentVoiceIsPlaying = YES;
-//            _audio = [UUAVAudioPlayer sharedInstance];
-//            _audio.delegate = self;
-//            //        [_audio playSongWithUrl:_voiceURL];
-//            [_audio playSongWithData:_songData];
-//        }else{
-//            [self UUAVAudioPlayerDidFinishPlay];
-//        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(chatCell:videoButtonClick:)]) {
+            [self.delegate chatCell:self videoButtonClick:message.userId];
+        }
     }
     //show the picture
     else if (message.messageMediaType == ZQBubbleMessageMediaTypePhoto)

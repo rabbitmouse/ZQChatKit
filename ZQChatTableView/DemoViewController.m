@@ -48,6 +48,13 @@
 }
 
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
+    if (text.length == 0) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"发送内容不能为空" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:action];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     NSLog(@"发送者:%@ , 新的:%@",sender, text);
     ZQMessage *message = [[ZQMessage alloc] initWithText:text UserId:self.chatModel.senderId sender:sender timestamp:date];
     message.bubbleMessageType = ZQBubbleMessageTypeSend;
@@ -100,6 +107,25 @@
     [self reloadChatView];
 }
 
+- (void)didSendVideoConverPhoto:(UIImage *)videoConverPhoto videoPath:(NSString *)videoPath fromSender:(NSString *)sender onDate:(NSDate *)date {
+    ZQMessage *videoMessage = [[ZQMessage alloc] initWithVideoConverPhoto:videoConverPhoto UserId:self.chatModel.senderId videoPath:videoPath videoUrl:nil sender:sender timestamp:date];
+    videoMessage.isUpload = NO;
+    ZQMessageFrame *voiceFrame = [[ZQMessageFrame alloc] init];
+    voiceFrame.message = videoMessage;
+    voiceFrame.shouldShowUserName = YES;
+    [self.chatModel.dataSource addObject:voiceFrame];
+    [self reloadChatView];
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //模拟发送成功
+            videoMessage.isUpload = YES;
+            videoMessage.isFailure = YES;
+            videoMessage.videoUrl = @"将URL保存到内存和数据库";
+            [self.tableview reloadData];
+        });
+    });
+}
 
 - (void)didFailureButton:(ZQLoadingButton *)button Clicked:(ZQMessage *)message {
     //模拟重新发送

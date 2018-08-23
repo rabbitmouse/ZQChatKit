@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C111A7E212CF58900E7EE4F /* ZQVideoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C111A7D212CF58900E7EE4F /* ZQVideoHelper.m */; };
+		0C111A81212D3F4300E7EE4F /* ZQVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C111A80212D3F4300E7EE4F /* ZQVideoViewController.m */; };
+		0C159E79212E618400FADEFE /* ZQRoundProgressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C159E78212E618400FADEFE /* ZQRoundProgressButton.m */; };
 		0C18D5C920FC459800C58023 /* UIImageView+ZQChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5C820FC459800C58023 /* UIImageView+ZQChat.m */; };
 		0C18D5D020FC47B900C58023 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5CC20FC47B900C58023 /* FLAnimatedImage.m */; };
 		0C18D5D120FC47B900C58023 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C18D5CD20FC47B900C58023 /* FLAnimatedImageView.m */; };
@@ -65,6 +68,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C111A7C212CF58900E7EE4F /* ZQVideoHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQVideoHelper.h; sourceTree = "<group>"; };
+		0C111A7D212CF58900E7EE4F /* ZQVideoHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQVideoHelper.m; sourceTree = "<group>"; };
+		0C111A7F212D3F4300E7EE4F /* ZQVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQVideoViewController.h; sourceTree = "<group>"; };
+		0C111A80212D3F4300E7EE4F /* ZQVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQVideoViewController.m; sourceTree = "<group>"; };
+		0C159E77212E618400FADEFE /* ZQRoundProgressButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZQRoundProgressButton.h; sourceTree = "<group>"; };
+		0C159E78212E618400FADEFE /* ZQRoundProgressButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZQRoundProgressButton.m; sourceTree = "<group>"; };
 		0C18D5C720FC459800C58023 /* UIImageView+ZQChat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ZQChat.h"; sourceTree = "<group>"; };
 		0C18D5C820FC459800C58023 /* UIImageView+ZQChat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ZQChat.m"; sourceTree = "<group>"; };
 		0C18D5CC20FC47B900C58023 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
@@ -319,6 +328,8 @@
 				0CCB09D720F360D000ECD6A6 /* ZQMenuCell.m */,
 				0C1C82F52119857C002F891A /* ZQLoadingButton.h */,
 				0C1C82F62119857C002F891A /* ZQLoadingButton.m */,
+				0C159E77212E618400FADEFE /* ZQRoundProgressButton.h */,
+				0C159E78212E618400FADEFE /* ZQRoundProgressButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -336,6 +347,10 @@
 				0C18D5D620FC75A600C58023 /* ZQVoiceRecordHUD.m */,
 				0C18D5D820FC9CDF00C58023 /* ZQRecordHelper.h */,
 				0C18D5D920FC9CDF00C58023 /* ZQRecordHelper.m */,
+				0C111A7C212CF58900E7EE4F /* ZQVideoHelper.h */,
+				0C111A7D212CF58900E7EE4F /* ZQVideoHelper.m */,
+				0C111A7F212D3F4300E7EE4F /* ZQVideoViewController.h */,
+				0C111A80212D3F4300E7EE4F /* ZQVideoViewController.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -596,13 +611,16 @@
 				0C18D5D020FC47B900C58023 /* FLAnimatedImage.m in Sources */,
 				0C4BDD2E20FED0C9004EB470 /* ZQChatModel.m in Sources */,
 				0C5F863820E5DB9F0073D6E1 /* AppDelegate.m in Sources */,
+				0C159E79212E618400FADEFE /* ZQRoundProgressButton.m in Sources */,
 				0C18D5D720FC75A600C58023 /* ZQVoiceRecordHUD.m in Sources */,
 				0CCB09D820F360D000ECD6A6 /* ZQMenuCell.m in Sources */,
 				0C5F866F20E5DCB20073D6E1 /* ZQChatViewController.m in Sources */,
+				0C111A81212D3F4300E7EE4F /* ZQVideoViewController.m in Sources */,
 				0C5F867920E5DF090073D6E1 /* ZQMessage.m in Sources */,
 				0C18D5D120FC47B900C58023 /* FLAnimatedImageView.m in Sources */,
 				0C5F867620E5DE9B0073D6E1 /* ZQMessageFrame.m in Sources */,
 				0C3E5D6820ECC2A00011DF6F /* ZQTextToolView.m in Sources */,
+				0C111A7E212CF58900E7EE4F /* ZQVideoHelper.m in Sources */,
 				0C18D5C920FC459800C58023 /* UIImageView+ZQChat.m in Sources */,
 				0C5CBD9B20F453D9001CDF64 /* ZQMenuItem.m in Sources */,
 				0C7820DC20EB5D0A001EBC55 /* UIScrollView+ZQkeyboardControl.m in Sources */,

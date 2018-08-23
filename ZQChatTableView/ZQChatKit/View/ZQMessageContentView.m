@@ -15,12 +15,15 @@
 #import "ZQMessageContentView.h"
 #import "UIImageView+WebCache.h"
 #import "UIImageView+ZQChat.h"
+#import <AVFoundation/AVFoundation.h>
+#import "ZQChatDefault.h"
 
 @interface ZQMessageContentView() {
     UIActivityIndicatorView *_indicator;
 }
 
 @property (nonatomic, strong) UIView *maskView;
+
 @end
 
 @implementation ZQMessageContentView
@@ -86,6 +89,8 @@
     // mask
     _maskView.frame = self.bounds;
     _indicator.center = self.maskView.center;
+    //视频
+    _videoPlayImageView.center = self.backImageView.center;
     
     // 配置语音播放的位置
     CGRect bubbleFrame = self.bounds;
@@ -121,28 +126,37 @@
             self.backImageView.hidden = YES;
             self.animationVoiceImageView.hidden = YES;
             self.voiceDurationLabel.hidden = YES;
-            self.videoPlayImageView.hidden = YES;
             self.animationVoiceImageView.hidden = YES;
             self.voiceUnreadDotImageView.hidden = YES;
             self.maskView.hidden = YES;
+            self.videoPlayImageView.hidden = YES;
             break;
         case ZQBubbleMessageMediaTypePhoto:
             self.backImageView.hidden = NO;
             self.animationVoiceImageView.hidden = YES;
             self.voiceDurationLabel.hidden = YES;
-            self.videoPlayImageView.hidden = YES;
             self.animationVoiceImageView.hidden = YES;
             self.voiceUnreadDotImageView.hidden = YES;
             self.maskView.hidden = YES;
+            self.videoPlayImageView.hidden = YES;
             break;
         case ZQBubbleMessageMediaTypeVoice:
             self.backImageView.hidden = YES;
             self.animationVoiceImageView.hidden = NO;
             self.voiceDurationLabel.hidden = NO;
-            self.videoPlayImageView.hidden = NO;
             self.animationVoiceImageView.hidden = NO;
             self.voiceUnreadDotImageView.hidden = self.message.isRead;
             self.maskView.hidden = YES;
+            self.videoPlayImageView.hidden = YES;
+            break;
+        case ZQBubbleMessageMediaTypeVideo:
+            self.backImageView.hidden = NO;
+            self.animationVoiceImageView.hidden = YES;
+            self.voiceDurationLabel.hidden = YES;
+            self.animationVoiceImageView.hidden = YES;
+            self.voiceUnreadDotImageView.hidden = YES;
+            self.maskView.hidden = YES;
+            self.videoPlayImageView.hidden = NO;
             break;
         default:
             break;
@@ -208,11 +222,45 @@
             self.voiceDurationLabel.text = [NSString stringWithFormat:@"%ld\'\'", (long)message.voiceDuration];
         }
             break;
+        case ZQBubbleMessageMediaTypeVideo: {
+            self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+            UIImage *defualtImg = [UIImage imageNamed:@"defualtPhoto"];
+            if (self.message.videoConverPhoto) {
+                self.backImageView.image = self.message.videoConverPhoto;
+            } else if (self.message.videoPath){
+                if (!message.isUpload) {
+                    [self loadMeadiaContentBegin];
+                } else {
+                    [self loadMeadiaContentEnd];
+                }
+                NSString *videoPath = self.message.videoPath;
+                // 获取视频第一帧
+                AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:videoPath] options:nil];
+                AVAssetImageGenerator *assetGen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+                
+                assetGen.appliesPreferredTrackTransform = YES;
+                CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+                NSError *error = nil;
+                CMTime actualTime;
+                CGImageRef image = [assetGen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+                UIImage *videoImage = [[UIImage alloc] initWithCGImage:image];
+                CGImageRelease(image);
+                
+                self.message.videoConverPhoto = videoImage;
+                
+                self.backImageView.image = videoImage;
+            } else {
+                self.backImageView.image = defualtImg;
+            }
             
+        }
+            break;
         default:
             break;
     }
 }
 
+/*
 
+ */
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ZQChatViewController.h"
+#import "ZQVideoViewController.h"
 
 #import "ZQMessageCell.h"
 #import "ZQTextToolView.h"
@@ -20,6 +21,9 @@
 
 #import "UIScrollView+ZQkeyboardControl.h"
 
+#import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
+
 #define TextViewDefualtHeight 40
 
 @interface ZQChatViewController ()
@@ -29,7 +33,8 @@ UIImagePickerControllerDelegate,
 UINavigationControllerDelegate,
 ZQMessageInputViewDelegate,
 ZQMessageCellDelegate,
-ZQChatMenuViewDelegate>
+ZQChatMenuViewDelegate,
+ZQRecordVideoDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *bottomToolView;
 
@@ -160,10 +165,10 @@ ZQChatMenuViewDelegate>
     if (self.delegate && [self.delegate respondsToSelector:@selector(loadCustomMenus)]) {
         menuView.menus = [self.delegate loadCustomMenus].copy;
     } else {
-        NSArray *titles = @[@"拍照",@"照片"];
-        NSArray *icons = @[@"sharemore_video",@"sharemore_pic"];
+        NSArray *titles = @[@"拍照",@"照片",@"视频"];
+        NSArray *icons = @[@"sharemore_video",@"sharemore_pic", @"sharemore_myfav"];
         NSMutableArray *menus = [NSMutableArray array];
-        for (int i = 0; i < 2; ++i) {
+        for (int i = 0; i < titles.count; ++i) {
             ZQMenuItem *item = [ZQMenuItem new];
             item.title = titles[i];
             item.imgName = icons[i];
@@ -547,6 +552,17 @@ ZQChatMenuViewDelegate>
     self.selectedTableCell = nil;
 }
 
+- (void)chatCell:(ZQMessageCell *)cell videoButtonClick:(NSString *)userId {
+    ZQMessage *message = cell.messageFrame.message;
+    NSURL *url = [NSURL fileURLWithPath:message.videoPath];
+    
+    AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
+    vc.player = [[AVPlayer alloc] initWithURL:url];
+    [vc.player play];
+    
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 - (void)chatCell:(ZQMessageCell *)cell failureButton:(ZQLoadingButton *)button Clicked:(NSString *)userId {
     if (self.delegate && [self.delegate respondsToSelector:@selector(didFailureButton:Clicked:)]) {
         [self.delegate didFailureButton:button Clicked:cell.messageFrame.message];
@@ -560,18 +576,28 @@ ZQChatMenuViewDelegate>
     } else {
         //默认
         switch (indexPath.item) {
-            case 0:
+            case 0: {
                 //拍照
                 NSLog(@"点击了拍照");
                 [self showPhotoWithSourceType:YES];
+            }
+                
                 break;
-            case 1:
+            case 1: {
                 //相册
                 NSLog(@"点击了相册");
                 [self showPhotoWithSourceType:NO];
+            }
+                
                 break;
-            case 2:
-                //地点
+            case 2: {
+                //视频
+                NSLog(@"点击了视频");
+                [self viewDidTap:nil];
+                ZQVideoViewController *vc = [ZQVideoViewController new];
+                vc.delegate = self;
+                [self presentViewController:vc animated:YES completion:nil];
+            }
                 break;
 
             default:
@@ -589,6 +615,14 @@ ZQChatMenuViewDelegate>
     }
 }
 
+#pragma mark - ZQRecordVideoDelegate
+- (void)didRecordVideoFinished:(NSString *)videoPath {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didSendVideoConverPhoto:videoPath:fromSender:onDate:)]) {
+        
+        [self.delegate didSendVideoConverPhoto:nil videoPath:videoPath fromSender:self.chatModel.senderName onDate:[NSDate date]];
+    }
+    
+}
 
 #pragma mark - getter & setter
 - (ZQVoiceRecordHUD *)recordHud {
